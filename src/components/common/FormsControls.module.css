@@ -1,0 +1,8 @@
+.formControl {
+    display: block;
+    margin: 5px;
+}
+
+.formControl .error {
+    color: red;
+}

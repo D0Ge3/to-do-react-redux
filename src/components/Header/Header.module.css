@@ -1,0 +1,8 @@
+a {
+    color: white;
+    text-decoration: none;
+}
+.bar {
+    display: flex;
+    justify-content: space-between;
+}
