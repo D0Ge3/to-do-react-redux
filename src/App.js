@@ -12,7 +12,7 @@ import Button from "@material-ui/core/Button";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Header from "./components/Header/Header";
-import ToDoListContainer from "./components/ToDoLists/ToDoListItem/ToDoList/ToDoListContainer";
+import ToDoListContainer from "./components/ToDoLists/ToDoListItem/Tasks/ToDoListContainer";
 
 
 let App = ({isInitialized, initializeApp}) => {

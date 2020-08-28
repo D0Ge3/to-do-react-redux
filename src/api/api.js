@@ -42,7 +42,7 @@ export const todoListsAPI = {
 export const tasksAPI = {
     getTasks(todolistId, count, page) {
         return instance.get(`/todo-lists/${todolistId}/tasks?count=${count}&page=${page}`)
-            .then(res => res.data);
+            .then(res => res);
     },
     addTask(todolistId, title) {
         return instance.post(`/todo-lists/${todolistId}/tasks`, {title}).then(res => res.data);

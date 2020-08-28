@@ -1,0 +1,33 @@
+import React, {useState} from "react";
+import {Container} from "@material-ui/core";
+import Input from "@material-ui/core/Input";
+import Button from "@material-ui/core/Button";
+import Task from "./Task/Task";
+import List from "@material-ui/core/List";
+import s from "./TaskList.module.css";
+import TaskDetails from "./Task/TaskDetails/TaskDetails";
+import Grid from "@material-ui/core/Grid";
+import TaskList from "./TaskList";
+
+const Tasks = ({items, totalCount, currentPage, todolistId, addTask}) => {
+    return (
+        <Container>
+            <Grid container spacing={4}>
+                <Grid item xs={6}>
+                    <TaskList
+                        items={items}
+                        totalCount={totalCount}
+                        currentPage={currentPage}
+                        todolistId={todolistId}
+                        addTask={addTask}
+                    />
+                </Grid>
+                <Grid item xs={6}>
+                    <TaskDetails/>
+                </Grid>
+            </Grid>
+        </Container>
+    )
+}
+
+export default Tasks;
