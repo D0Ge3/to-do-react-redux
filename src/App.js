@@ -12,6 +12,7 @@ import Button from "@material-ui/core/Button";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Header from "./components/Header/Header";
+import ToDoListContainer from "./components/ToDoLists/ToDoListItem/ToDoList/ToDoListContainer";
 
 
 let App = ({isInitialized, initializeApp}) => {
@@ -26,6 +27,9 @@ let App = ({isInitialized, initializeApp}) => {
             <Switch>
                 <Route path={"/login"}>
                     <Login/>
+                </Route>
+                <Route path={"/todo/:listId"}>
+                    <ToDoListContainer />
                 </Route>
                 <Route path={"/todo"}>
                     <ToDoLists/>

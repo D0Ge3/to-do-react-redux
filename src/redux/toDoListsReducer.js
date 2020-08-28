@@ -3,25 +3,7 @@ import {todoListsAPI} from "../api/api";
 const SET_TODO_LISTS = "toDoLists/SET_TODO_LISTS";
 
 const initialState = {
-    lists: [
-        {
-            "id": "1",
-            "title": "what todo",
-            "addedDate": "2019-07-30T12:24:15.063",
-            "order": 0
-        },
-        {
-            "id": "2",
-            "title": "what todo1",
-            "addedDate": "2019-07-30T12:24:15.063",
-            "order": 0
-        },
-        {
-            "id": "3",
-            "title": "what todo2",
-            "addedDate": "2019-07-30T12:24:15.063",
-            "order": 0
-        }]
+    lists: []
 }
 
 const toDoListsReducer = (state = initialState, action) => {
@@ -36,11 +18,31 @@ const toDoListsReducer = (state = initialState, action) => {
 export const setToDoLists = (lists) => ({type: SET_TODO_LISTS, lists});
 
 export const getToDoLists = () => async (dispatch) => {
-    let data = await todoListsAPI.todoLists();
+    const data = await todoListsAPI.todoLists();
     if (data.status === 200) {
         dispatch(setToDoLists(data.data));
     }
 }
 
+export const addNewToDoList = (title) => async (dispatch) => {
+    const data = await todoListsAPI.addNewList(title);
+    if (data.resultCode === 0) {
+        dispatch(getToDoLists());
+    }
+}
+
+export const deleteToDoList = (todolistId) => async (dispatch) => {
+    const data = await todoListsAPI.deleteList(todolistId);
+    if (data.resultCode === 0) {
+        dispatch(getToDoLists());
+    }
+}
+
+export const updateToDoListTitle = (todolistId, title) => async (dispatch) => {
+    const data = await todoListsAPI.updateListTitle(todolistId, title);
+    if (data.resultCode === 0) {
+        dispatch(getToDoLists());
+    }
+}
 
 export default toDoListsReducer;

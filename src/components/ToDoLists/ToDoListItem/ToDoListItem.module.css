@@ -1,0 +1,11 @@
+.list {
+
+}
+.listLink {
+    color: black;
+}
+
+.deleteBtn {
+    cursor: pointer;
+    color: red;
+}
