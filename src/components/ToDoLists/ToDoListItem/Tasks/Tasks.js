@@ -9,12 +9,18 @@ import TaskDetails from "./Task/TaskDetails/TaskDetails";
 import Grid from "@material-ui/core/Grid";
 import TaskList from "./TaskList";
 
-const Tasks = ({items, totalCount, currentPage, todolistId, addTask}) => {
+
+const Tasks = ({items, totalCount, currentPage, todolistId, addTask,
+                   selectTask, selectedItem, deleteTask, updateTaskTitle}) => {
     return (
         <Container>
             <Grid container spacing={4}>
                 <Grid item xs={6}>
                     <TaskList
+                        updateTaskTitle={updateTaskTitle}
+                        deleteTask={deleteTask}
+                        selectedItemId={selectedItem.id}
+                        selectTask={selectTask}
                         items={items}
                         totalCount={totalCount}
                         currentPage={currentPage}
@@ -23,7 +29,7 @@ const Tasks = ({items, totalCount, currentPage, todolistId, addTask}) => {
                     />
                 </Grid>
                 <Grid item xs={6}>
-                    <TaskDetails/>
+                    <TaskDetails selectedItem={selectedItem}/>
                 </Grid>
             </Grid>
         </Container>

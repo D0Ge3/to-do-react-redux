@@ -19,9 +19,15 @@ const AddTaskForm = ({todolistId, addTask}) => {
     )
 }
 
-const TaskList = ({items, totalCount, currentPage, todolistId, addTask}) => {
+const TaskList = ({items, totalCount, currentPage, todolistId, addTask,
+                      selectTask, selectedItemId, deleteTask, updateTaskTitle}) => {
 
-    const tasks = items.map(t => <Task key={t.id} task={t}/>);
+    const tasks = items.map(t => <Task key={t.id} task={t}
+        updateTaskTitle={updateTaskTitle}
+        todolistId={todolistId}
+        deleteTask={deleteTask}
+        selectedItemId={selectedItemId}
+        selectTask={selectTask} />);
 
     return (
         <>

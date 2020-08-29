@@ -21,7 +21,7 @@ const ToDoListItem = ({list, deleteToDoList, updateToDoListTitle}) => {
         <ListItem button>
             <ListItemText onClick={() => console.log("link")} className={s.list}>
                 {editMode
-                    ? <Input value={newTitle} onChange={onChangeTitle} onBlur={saveItemTitle}/>
+                    ? <Input autoFocus value={newTitle} onChange={onChangeTitle} onBlur={saveItemTitle}/>
                     : <NavLink className={s.listLink} to={`/todo/${list.id}`} >{list.title}</NavLink>}
             </ListItemText>
             <EditOutlined  onClick={() => setEditMode(true)}/>
