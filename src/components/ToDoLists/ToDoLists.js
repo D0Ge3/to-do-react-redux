@@ -24,6 +24,7 @@ const ToDoListAddForm = ({addToDoList}) => {
     const onChangeNewList = e => setToDoListTitle(e.target.value);
     const addNewList = () => {
         addToDoList(toDoListTitle);
+        setToDoListTitle("");
     }
     if (addMode) {
     return (

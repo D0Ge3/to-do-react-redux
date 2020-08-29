@@ -10,6 +10,7 @@ const AddTaskForm = ({todolistId, addTask}) => {
     const onChangeTask = e => setTask(e.target.value);
     const onAddTask = () => {
         addTask(todolistId, task);
+        setTask("");
     }
     return (
         <>
