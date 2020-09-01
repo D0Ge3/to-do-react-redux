@@ -30,11 +30,16 @@ const tasksReducer = (state = initialState, action) => {
             return {...state, selectedItem };
         case DELETE_TASK:
             return {...state,
-                items: state.items.filter(item => item.id !== action.taskId)};
+                items: state.items.filter(item => item.id !== action.taskId),
+                selectedItem: state.selectedItem.id === action.taskId ? {} : state.selectedItem
+            };
         case UPDATE_TASK:
             return {...state,
                 items: state.items.map((item) =>
-                    item.id === action.task.id ? action.task : item)
+                    item.id === action.task.id ? action.task : item),
+                selectedItem: action.task.id === state.selectedItem.id
+                    ? action.task
+                    : state.selectedItem
                 }
         default:
             return state

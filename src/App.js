@@ -7,12 +7,10 @@ import {connect, Provider} from "react-redux";
 import ToDoLists from "./components/ToDoLists/ToDoListsContainer";
 import {initializeApp} from "./redux/appReducer";
 import Preloader from "./components/common/Preloader";
-import AppBar from "@material-ui/core/AppBar";
-import Button from "@material-ui/core/Button";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
 import Header from "./components/Header/Header";
 import ToDoListContainer from "./components/ToDoLists/ToDoListItem/Tasks/ToDoListContainer";
+import MomentUtils from "@date-io/moment";
+import {MuiPickersUtilsProvider} from "@material-ui/pickers";
 
 
 let App = ({isInitialized, initializeApp}) => {
@@ -52,7 +50,9 @@ const MainApp = (props) => {
     return (
         <BrowserRouter>
             <Provider store={store}>
-                <App/>
+                <MuiPickersUtilsProvider utils={MomentUtils}>
+                    <App/>
+                </MuiPickersUtilsProvider>
             </Provider>
         </BrowserRouter>
     )

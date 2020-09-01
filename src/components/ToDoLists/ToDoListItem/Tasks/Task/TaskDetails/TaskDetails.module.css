@@ -1,0 +1,39 @@
+.taskParam {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 400px;
+
+}
+
+.taskDescription {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 570px;
+
+}
+
+.taskTitle {
+    margin-bottom: 40px;
+}
+
+.paramLabel {
+    color: #6f7782;
+
+}
+.descriptionLabel {
+    align-self: flex-start;
+    margin-top: 10px;
+    color: #6f7782;
+}
+
+.description {
+    width: 400px;
+}
+
+.datePicker {
+    width: 230px;
+}
