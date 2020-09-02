@@ -84,4 +84,11 @@ export const updateTaskTitle = (todolistId, task, newTitle) => async (dispatch) 
     }
 }
 
+export const updateTask = (taskData) => async (dispatch) => {
+    const data = await tasksAPI.updateTask(taskData.todoListId, taskData.id, taskData);
+    if (data.resultCode === 0) {
+        dispatch(updateTaskAC(data.data.item));
+    }
+}
+
 export default tasksReducer;

@@ -10,7 +10,7 @@ import Grid from "@material-ui/core/Grid";
 import TaskList from "./TaskList";
 
 
-const Tasks = ({items, totalCount, currentPage, todolistId, addTask,
+const Tasks = ({items, totalCount, currentPage, todolistId, addTask, updateTask, resetForm,
                    selectTask, selectedItem, deleteTask, updateTaskTitle}) => {
     return (
         <Container>
@@ -29,7 +29,10 @@ const Tasks = ({items, totalCount, currentPage, todolistId, addTask,
                     />
                 </Grid>
                 <Grid item xs={6}>
-                    <TaskDetails selectedItem={selectedItem}/>
+                    <TaskDetails
+                        // resetForm={resetForm}
+                        updateTask={updateTask}
+                        selectedItem={selectedItem}/>
                 </Grid>
             </Grid>
         </Container>

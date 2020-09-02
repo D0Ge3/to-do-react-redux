@@ -8,6 +8,8 @@ import FormHelperText from "@material-ui/core/FormHelperText";
 import Radio from "@material-ui/core/Radio";
 import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
+import {KeyboardDateTimePicker} from "@material-ui/pickers";
+import s from "../ToDoLists/ToDoListItem/Tasks/Task/TaskDetails/TaskDetails.module.css";
 
 
 export const renderTextField = ({
@@ -22,6 +24,41 @@ export const renderTextField = ({
         placeholder={label}
         error={touched && invalid}
         helperText={touched && error}
+        {...input}
+        {...custom}
+    />
+)
+
+export const DateTimeField = props => {
+    const {
+        dateFormat,
+        meta: { submitting, error, touched },
+        input: { onBlur, value, ...inputProps },
+        ...others
+    } = props;
+
+    const onChange = date => {
+        date ? inputProps.onChange(date.format("YYYY-MM-DDTHH:mm:ss")) : inputProps.onChange(null);
+    };
+
+    return (
+        <KeyboardDateTimePicker
+            {...inputProps}
+            {...others}
+            format={dateFormat}
+            value={value ? new Date(value) : null}
+            disabled={submitting}
+            onBlur={() => onBlur(value ? value : null)}
+            error={error && touched}
+            onChange={onChange}
+        />
+    );
+};
+
+
+export const renderKeyboardDateTimePicker = ({input, dateFormat, meta: {touched, invalid, error}, ...custom}) => (
+    <KeyboardDateTimePicker
+        format={dateFormat}
         {...input}
         {...custom}
     />
