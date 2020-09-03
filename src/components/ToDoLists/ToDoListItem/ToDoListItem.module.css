@@ -1,9 +1,6 @@
 .listItemField {
     height: 24px;
 }
-.listLink {
-    color: black;
-}
 
 .deleteBtn {
     cursor: pointer;

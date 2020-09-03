@@ -28,7 +28,7 @@ const tasksReducer = (state = initialState, action) => {
         case ADD_TASK:
             return {...state, items: [action.task, ...state.items]};
         case SELECT_TASK:
-            let selectedItem = state.items.find((item) => item.id === action.taskId);
+            let selectedItem = action.taskId ? state.items.find((item) => item.id === action.taskId) : {};
             return {...state, selectedItem };
         case DELETE_TASK:
             return {...state,

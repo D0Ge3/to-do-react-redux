@@ -1,11 +1,12 @@
 import React, {useState} from "react";
-import Input from "@material-ui/core/Input";
 import Button from "@material-ui/core/Button";
 import Task from "./Task/Task";
 import List from "@material-ui/core/List";
 import Preloader from "../../../common/Preloader";
 import TextField from '@material-ui/core/TextField';
 import s from "./TaskList.module.css";
+import { Typography } from '@material-ui/core';
+
 
 const AddTaskForm = ({todolistId, addTask}) => {
 
@@ -39,9 +40,11 @@ const TaskList = ({items, totalCount, currentPage, todolistId, addTask, isFetchi
             <div className={s.list}>
             {isFetching
                 ? <Preloader size="40px" isCenter={true} />
-                : <List component="nav" aria-label="main mailbox folders">
-                    {tasks}
-                </List>
+                : items.length > 0 
+                    ?   <List component="nav" aria-label="main mailbox folders">
+                            {tasks}
+                        </List>
+                    : <span className={s.noTasksTitle}>No tasks!</span>
             }
             </div>
         </>

@@ -5,8 +5,9 @@ import s from "./ToDoListItem.module.css";
 import ListItem from "@material-ui/core/ListItem";
 import {DeleteOutline, Edit, EditOutlined} from "@material-ui/icons";
 import {TextField} from "@material-ui/core";
+import {withRouter} from "react-router-dom";
 
-const ToDoListItem = ({list, deleteToDoList, updateToDoListTitle}) => {
+const ToDoListItem = ({list, deleteToDoList, updateToDoListTitle, history}) => {
 
     let [editMode, setEditMode] = useState(false);
     let [newTitle, setNewTitle] = useState(list.title);
@@ -18,11 +19,11 @@ const ToDoListItem = ({list, deleteToDoList, updateToDoListTitle}) => {
     const onChangeTitle = e => setNewTitle(e.target.value);
 
     return (
-        <ListItem button>
+        <ListItem button onClick={() => history.push(`/todo/${list.id}`)}>
             <ListItemText >
                 {editMode
                     ? <TextField className={s.listItemField} size="small" autoFocus value={newTitle} onChange={onChangeTitle} onBlur={saveItemTitle}/>
-                    : <NavLink className={s.listLink} to={`/todo/${list.id}`} >{list.title}</NavLink>}
+                    : <span className={s.listLink} >{list.title}</span>}
             </ListItemText>
             <EditOutlined  onClick={() => setEditMode(true)}/>
             <DeleteOutline onClick={() => deleteToDoList(list.id)} className={s.deleteBtn}/>
@@ -30,4 +31,4 @@ const ToDoListItem = ({list, deleteToDoList, updateToDoListTitle}) => {
     )
 }
 
-export default ToDoListItem;
+export default withRouter(ToDoListItem);

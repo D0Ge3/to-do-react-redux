@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {Container} from "@material-ui/core";
 import Input from "@material-ui/core/Input";
 import Button from "@material-ui/core/Button";
@@ -12,6 +12,8 @@ import TaskList from "./TaskList";
 
 const Tasks = ({items, totalCount, currentPage, todolistId, addTask, updateTask, isFetching,
                    selectTask, selectedItem, deleteTask, updateTaskTitle}) => {
+
+    useEffect(() => () => selectTask(null), []);               
     return (
         <Container>
             <Grid container spacing={4}>
