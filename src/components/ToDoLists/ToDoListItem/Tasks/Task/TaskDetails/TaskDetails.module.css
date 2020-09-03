@@ -2,10 +2,8 @@
     margin-bottom: 20px;
     display: flex;
     justify-content: space-between;
-    /*align-items: center;*/
     width: 400px;
     height: 63px;
-
 }
 
 .taskDescription {
@@ -14,19 +12,15 @@
     justify-content: space-between;
     align-items: center;
     width: 570px;
-
 }
 
 .taskTitle {
     margin-bottom: 40px;
-
 }
 
 .paramLabel {
     color: #6f7782;
     margin-top: 12px;
-    /*align-self: center;*/
-
 }
 .descriptionLabel {
     align-self: flex-start;

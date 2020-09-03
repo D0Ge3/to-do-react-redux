@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import ListItemText from "@material-ui/core/ListItemText";
 import s from "./Task.module.css";
-import {Input} from "@material-ui/core";
+import {Input, TextField} from "@material-ui/core";
 import {NavLink} from "react-router-dom";
 import {DeleteOutline, EditOutlined} from "@material-ui/icons";
 import ListItem from "@material-ui/core/ListItem";
@@ -18,7 +18,7 @@ const Task = ({task, selectTask, selectedItemId, deleteTask, todolistId, updateT
     return (
         <ListItem selected={selectedItemId === task.id}  button onClick={() => selectTask(task.id)}>
             <ListItemText >
-                {editMode && <Input onChange={onChangeTitle} value={newTitle} autoFocus onBlur={saveNewTitle}/>}
+                {editMode && <TextField className={s.taskEditInput} size="small" onChange={onChangeTitle} value={newTitle} autoFocus onBlur={saveNewTitle}/>}
                 {!editMode && <span onClick={() => setEditMode(true)}>{task.title}</span>}
             </ListItemText>
             <DeleteOutline onClick={() => deleteTask(todolistId, task.id)} className={s.deleteBtn}/>

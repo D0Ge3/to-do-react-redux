@@ -1,5 +1,5 @@
 .list {
-    width: 300px;
+    margin-top: 10px;
 }
 
 .taskWrapper {
@@ -8,4 +8,12 @@
 
 .taskDetails {
     width: 500px;
+}
+
+.addTaskForm {
+    display: flex;
+    height: 36px;
+    width: 300px;
+    justify-content: space-between;
+
 }

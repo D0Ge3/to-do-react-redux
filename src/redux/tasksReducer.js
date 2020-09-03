@@ -7,12 +7,14 @@ const ADD_TASK = "tasks/ADD_TASK";
 const SELECT_TASK = "tasks/SELECT_TASK";
 const DELETE_TASK = "tasks/DELETE_TASK";
 const UPDATE_TASK = "tasks/UPDATE_TASK";
+const TOGGLE_IS_FETCHING = "tasks/TOGGLE_IS_FETCHING";
 
 const initialState = {
     items: [],
     totalCount: null,
     currentPage: 1,
-    selectedItem: {}
+    selectedItem: {},
+    isFetching: false
 }
 
 const tasksReducer = (state = initialState, action) => {
@@ -40,7 +42,9 @@ const tasksReducer = (state = initialState, action) => {
                 selectedItem: action.task.id === state.selectedItem.id
                     ? action.task
                     : state.selectedItem
-                }
+                };
+        case TOGGLE_IS_FETCHING:
+            return {...state, isFetching: !state.isFetching};
         default:
             return state
     }
@@ -53,13 +57,16 @@ export const addTaskAC = (task) => ({type: ADD_TASK, task});
 export const deleteTaskAC = (taskId) => ({type: DELETE_TASK, taskId});
 export const selectTask = (taskId) => ({type: SELECT_TASK, taskId});
 export const updateTaskAC = (task) => ({type: UPDATE_TASK, task})
+export const toggleIsFetchingTasks = () => ({type: TOGGLE_IS_FETCHING});
 
 export const getTasks = (todolistId, count, page) => async (dispatch) => {
+    dispatch(toggleIsFetchingTasks());
     const data = await tasksAPI.getTasks(todolistId, count, page);
     if (data.status === 200) {
         dispatch(setTotalCount(data.data.totalCount));
         dispatch(setCurrentPage(page));
         dispatch(setTasks(data.data.items));
+        dispatch(toggleIsFetchingTasks());
     }
 }
 

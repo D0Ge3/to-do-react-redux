@@ -1,7 +1,12 @@
-import React from "react";
+import React from 'react'
 
-const Preloader = () => {
-    return <div>loading...</div>
+import { CircularProgress } from "@material-ui/core";
+const Preloader = ({size, isCenter}) => {
+    return (
+        <div style={isCenter && {width: size, margin: "0 auto"}}>
+            <CircularProgress  size={size} />
+        </div>
+    )
 }
 
 export default Preloader;

@@ -10,13 +10,14 @@ import Grid from "@material-ui/core/Grid";
 import TaskList from "./TaskList";
 
 
-const Tasks = ({items, totalCount, currentPage, todolistId, addTask, updateTask, resetForm,
+const Tasks = ({items, totalCount, currentPage, todolistId, addTask, updateTask, isFetching,
                    selectTask, selectedItem, deleteTask, updateTaskTitle}) => {
     return (
         <Container>
             <Grid container spacing={4}>
                 <Grid item xs={6}>
                     <TaskList
+                        isFetching={isFetching}
                         updateTaskTitle={updateTaskTitle}
                         deleteTask={deleteTask}
                         selectedItemId={selectedItem.id}

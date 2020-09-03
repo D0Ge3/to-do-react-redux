@@ -18,11 +18,11 @@ let App = ({isInitialized, initializeApp}) => {
         initializeApp();
     }, []);
 
-    if (!isInitialized) return <Preloader/>
     return (
         <>
             <Header />
-            <Switch>
+            {!isInitialized && <Preloader size="200px" isCenter={true} /> }
+            {isInitialized && <Switch>
                 <Route path={"/login"}>
                     <Login/>
                 </Route>
@@ -33,7 +33,7 @@ let App = ({isInitialized, initializeApp}) => {
                     <ToDoLists/>
                 </Route>
                 <Redirect from="/" to="/todo"/>
-            </Switch>
+            </Switch>}
         </>
     );
 }

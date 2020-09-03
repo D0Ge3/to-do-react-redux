@@ -1,13 +1,11 @@
 import React, {useEffect} from "react";
 import {withRouter} from "react-router-dom";
-import {Container} from "@material-ui/core";
 import {compose} from "redux";
 import {connect} from "react-redux";
 import {addTask, deleteTask, getTasks, selectTask, updateTask, updateTaskTitle} from "../../../../redux/tasksReducer";
 import Tasks from "./Tasks";
-import {reset} from 'redux-form';
 
-const ToDoListContainer = ({items, totalCount, currentPage, getTasks, reset,
+const ToDoListContainer = ({items, totalCount, currentPage, getTasks, isFetching,
                                match, addTask, selectTask, selectedItem, deleteTask, updateTaskTitle, updateTask}) => {
     const todolistId = match.params.listId;
     useEffect(() => {
@@ -16,7 +14,7 @@ const ToDoListContainer = ({items, totalCount, currentPage, getTasks, reset,
 
     return (
         <Tasks
-            //resetForm={reset}
+            isFetching={isFetching}
             updateTask={updateTask}
             updateTaskTitle={updateTaskTitle}
             deleteTask={deleteTask}
@@ -35,11 +33,12 @@ const mapStateToProps = (state) => {
         items: state.tasks.items,
         totalCount: state.tasks.totalCount,
         currentPage: state.tasks.currentPage,
-        selectedItem: state.tasks.selectedItem
+        selectedItem: state.tasks.selectedItem,
+        isFetching: state.tasks.isFetching
     }
 }
 
 export default compose(
-    connect(mapStateToProps,{getTasks, addTask, selectTask, deleteTask, updateTaskTitle, updateTask, reset}),
+    connect(mapStateToProps,{getTasks, addTask, selectTask, deleteTask, updateTaskTitle, updateTask}),
     withRouter
 )(ToDoListContainer);

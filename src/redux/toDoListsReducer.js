@@ -1,26 +1,33 @@
 import {todoListsAPI} from "../api/api";
 
 const SET_TODO_LISTS = "toDoLists/SET_TODO_LISTS";
+const TOGGLE_IS_FETCHING = "toDoLists/TOGGLE_IS_FETCHING";
 
 const initialState = {
-    lists: []
+    lists: [],
+    isFetching: false
 }
 
 const toDoListsReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_TODO_LISTS:
-            return {...state, lists: action.lists}
+            return {...state, lists: action.lists};
+        case TOGGLE_IS_FETCHING:
+            return {...state, isFetching: !state.isFetching};
         default:
             return state
     }
 }
 
 export const setToDoLists = (lists) => ({type: SET_TODO_LISTS, lists});
+export const toggleIsFetchingLists = () => ({type: TOGGLE_IS_FETCHING});
 
 export const getToDoLists = () => async (dispatch) => {
+    dispatch(toggleIsFetchingLists());
     const data = await todoListsAPI.todoLists();
     if (data.status === 200) {
         dispatch(setToDoLists(data.data));
+        dispatch(toggleIsFetchingLists());
     }
 }
 

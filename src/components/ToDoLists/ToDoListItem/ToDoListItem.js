@@ -4,7 +4,7 @@ import {NavLink} from "react-router-dom";
 import s from "./ToDoListItem.module.css";
 import ListItem from "@material-ui/core/ListItem";
 import {DeleteOutline, Edit, EditOutlined} from "@material-ui/icons";
-import {Input} from "@material-ui/core";
+import {TextField} from "@material-ui/core";
 
 const ToDoListItem = ({list, deleteToDoList, updateToDoListTitle}) => {
 
@@ -19,9 +19,9 @@ const ToDoListItem = ({list, deleteToDoList, updateToDoListTitle}) => {
 
     return (
         <ListItem button>
-            <ListItemText onClick={() => console.log("link")} className={s.list}>
+            <ListItemText >
                 {editMode
-                    ? <Input autoFocus value={newTitle} onChange={onChangeTitle} onBlur={saveItemTitle}/>
+                    ? <TextField className={s.listItemField} size="small" autoFocus value={newTitle} onChange={onChangeTitle} onBlur={saveItemTitle}/>
                     : <NavLink className={s.listLink} to={`/todo/${list.id}`} >{list.title}</NavLink>}
             </ListItemText>
             <EditOutlined  onClick={() => setEditMode(true)}/>

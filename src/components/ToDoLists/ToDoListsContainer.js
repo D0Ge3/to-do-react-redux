@@ -5,7 +5,8 @@ import {Redirect} from "react-router-dom";
 import {addNewToDoList, deleteToDoList, getToDoLists, updateToDoListTitle} from "../../redux/toDoListsReducer";
 import ToDoLists from "./ToDoLists";
 
-const ToDoListsContainer = ({logout, isAuth, getToDoLists, lists, addNewToDoList, deleteToDoList, updateToDoListTitle}) => {
+const ToDoListsContainer = ({logout, isAuth, getToDoLists, lists, addNewToDoList, isFetching,
+                                deleteToDoList, updateToDoListTitle}) => {
     useEffect(() => {
         if (isAuth) {
             getToDoLists();
@@ -20,6 +21,7 @@ const ToDoListsContainer = ({logout, isAuth, getToDoLists, lists, addNewToDoList
     return (
         <>
             <ToDoLists
+                isFetching={isFetching}
                 updateToDoListTitle={updateToDoListTitle}
                 deleteToDoList={deleteToDoList}
                 addToDoList={addToDoList}
@@ -31,7 +33,8 @@ const ToDoListsContainer = ({logout, isAuth, getToDoLists, lists, addNewToDoList
 const mapStateToProps = (state) => {
     return {
         isAuth: state.auth.isAuth,
-        lists: state.toDoLists.lists
+        lists: state.toDoLists.lists,
+        isFetching: state.toDoLists.isFetching
     }
 }
 

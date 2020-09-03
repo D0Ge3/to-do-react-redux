@@ -10,7 +10,7 @@ import {logout} from "../../redux/authReducer";
 
 const Header = ({isAuth, logout}) => {
     return (
-        <AppBar position="static">
+        <AppBar position="static" className={s.header}>
             <Toolbar className={s.bar} >
                 <Typography variant="h6" >
                     <NavLink className={s.link} to="/todo">ToDo APP</NavLink>

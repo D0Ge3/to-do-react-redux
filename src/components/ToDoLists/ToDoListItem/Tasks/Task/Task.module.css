@@ -1,3 +1,7 @@
 .deleteBtn {
     color: red;
 }
+
+.taskEditInput {
+    height: 24px;
+}

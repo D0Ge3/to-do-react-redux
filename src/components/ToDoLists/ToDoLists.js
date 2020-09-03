@@ -1,12 +1,10 @@
 import React, {useState} from "react";
-import {NavLink} from "react-router-dom";
 import s from "./ToDoLists.module.css";
-import {Container, Input, Typography} from "@material-ui/core";
+import {Container, Input, Typography, TextField} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import List from "@material-ui/core/List";
-import ListItemText from "@material-ui/core/ListItemText";
-import ListItem from "@material-ui/core/ListItem";
 import ToDoListItem from "./ToDoListItem/ToDoListItem";
+import Preloader from "../common/Preloader";
 
 const ToDoListAddForm = ({addToDoList}) => {
 
@@ -28,8 +26,8 @@ const ToDoListAddForm = ({addToDoList}) => {
     }
     if (addMode) {
     return (
-        <div>
-            <Input value={toDoListTitle} onChange={onChangeNewList} />
+        <div className={s.addListForm}>
+            <TextField size="small" placeholder="New list" variant="outlined" value={toDoListTitle} onChange={onChangeNewList} />
             <Button variant="contained" color="primary" onClick={addNewList}>Add</Button>
             <Button variant="contained" color="primary" onClick={deactivateAddMode}>Cancel</Button>
         </div>
@@ -43,7 +41,7 @@ const ToDoListAddForm = ({addToDoList}) => {
 
 
 
-const ToDoLists = ({lists, addToDoList, deleteToDoList, updateToDoListTitle}) => {
+const ToDoLists = ({lists, addToDoList, deleteToDoList, updateToDoListTitle, isFetching}) => {
     let toDos = lists.map(l => <ToDoListItem
         key={l.id}
         list={l}
@@ -52,13 +50,20 @@ const ToDoLists = ({lists, addToDoList, deleteToDoList, updateToDoListTitle}) =>
 
     return (
         <Container>
-            <Typography variant="h4">
-                ToDos
-            </Typography>
-            <ToDoListAddForm addToDoList={addToDoList} />
-            <List className={s.list} component="nav" aria-label="main mailbox folders">
-                {toDos}
-            </List>
+            <div className={s.todoListsWrapper}>
+                <Typography variant="h4">
+                    ToDos
+                </Typography>
+                <ToDoListAddForm addToDoList={addToDoList} />
+                <div className={s.list}>
+                {isFetching
+                    ? <Preloader size="40px" isCenter={true}/>
+                    : <List  component="nav" aria-label="main mailbox folders">
+                        {toDos}
+                    </List>
+                }
+                </div>
+            </div>
         </Container>
     )
 }
