@@ -15,7 +15,14 @@
 }
 
 .taskTitle {
-    margin-bottom: 40px;
+    height: 43px;
+    font-size: 25px;
+    font-weight: bolder;
+    margin-bottom: 30px;
+}
+.taskTitleInput {
+    font-size: .83em;
+    font-weight: bolder;
 }
 
 .paramLabel {

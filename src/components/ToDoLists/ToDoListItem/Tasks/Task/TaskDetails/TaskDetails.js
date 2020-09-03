@@ -4,6 +4,7 @@ import s from "./TaskDetails.module.css";
 import Button from "@material-ui/core/Button";
 import {Field, reduxForm} from "redux-form";
 import {DateTimeField, renderTextField} from "../../../../../common/FormsControls";
+import { TextField } from "@material-ui/core";
 
 let EditTaskForm = ({initialValues, handleSubmit}) => {
 
@@ -62,16 +63,43 @@ EditTaskForm = reduxForm({
     enableReinitialize: true
 })(EditTaskForm)
 
+const EditTitleForm = ({taskTitle, saveNewTitle}) => {
+    let [title, setTitle] = useState(taskTitle);
+    const onChangeTitle = (e) => setTitle(e.target.value);
+    const onSaveTitle = () => {
+        saveNewTitle(title);
+    }
+    return (
+        <div className={s.taskTitle}>
+            <TextField 
+                onChange={onChangeTitle}
+                inputProps={{style: {fontSize: "25px", fontWeight: "bolder"}}}
+                // className={styles.textField}
+                value={title} 
+                onBlur={onSaveTitle} 
+                autoFocus size="medium" />
+        </div>
+    )
+}
 
-const TaskDetails = ({selectedItem, updateTask, resetForm}) => {
+const TaskDetails = ({selectedItem, updateTask, resetForm, updateTaskTitle, todolistId}) => {
 
     const onSaveTask = (formData) => updateTask(formData);
+    let [editTitleMode, setEditTitleMode] = useState(false);
 
+    const toggleEditTitleMode = () => setEditTitleMode(!editTitleMode);
+
+    const saveNewTitle = (newTitle) => {
+        updateTaskTitle(todolistId, selectedItem, newTitle);
+        toggleEditTitleMode();
+    }
 
     if (selectedItem.id) {
     return (
         <>
-            <div className={s.taskTitle}><Typography variant="h5">{selectedItem.title}</Typography></div>
+            {editTitleMode 
+            ? <EditTitleForm saveNewTitle={saveNewTitle} taskTitle={selectedItem.title} /> 
+            : <div className={s.taskTitle}><span onClick={toggleEditTitleMode}>{selectedItem.title}</span></div>}
             <EditTaskForm resetForm={resetForm} initialValues={selectedItem} onSubmit={onSaveTask} />
         </>
     )

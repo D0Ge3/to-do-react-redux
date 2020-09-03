@@ -34,6 +34,8 @@ const Tasks = ({items, totalCount, currentPage, todolistId, addTask, updateTask,
                 <Grid item xs={6}>
                     <TaskDetails
                         // resetForm={resetForm}
+                        todolistId={todolistId}
+                        updateTaskTitle={updateTaskTitle}
                         updateTask={updateTask}
                         selectedItem={selectedItem}/>
                 </Grid>
