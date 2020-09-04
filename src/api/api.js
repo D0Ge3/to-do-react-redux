@@ -60,3 +60,9 @@ export const tasksAPI = {
         return instance.put(`/todo-lists/${todolistId}/tasks/${taskId}`, taskData).then(res => res.data);
     }
 }
+
+export const securityAPI = {
+    getCaptchaUrl() {
+        return instance.get(`/security/get-captcha-url`).then(res => res.data);
+    }
+}

@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import './App.css';
 import {Switch, Redirect, Route, BrowserRouter} from "react-router-dom";
-import Login from "./components/Login";
+import Login from "./components/Login/Login";
 import store from "./redux/reduxStore";
 import {Provider, useSelector, useDispatch} from "react-redux";
 import ListListsContainer from "./components/ListLists/ListListsContainer";
