@@ -42,3 +42,15 @@
 .datePicker {
     width: 230px;
 }
+
+.buttonWrapper {
+    width: 70px;
+    height: 36px;
+    position: relative;
+}
+
+.buttonProgress {
+    position: absolute;
+    top: 20%;
+    left: 30%;
+  }

@@ -4,14 +4,12 @@ import s from "./TaskDetails.module.css";
 import Button from "@material-ui/core/Button";
 import {Field, reduxForm} from "redux-form";
 import {DateTimeField, renderTextField} from "../../../../../common/FormsControls";
-import { TextField } from "@material-ui/core";
+import { TextField, CircularProgress } from "@material-ui/core";
 
-let EditTaskForm = ({initialValues, handleSubmit}) => {
-
+let EditTaskForm = ({initialValues, handleSubmit, submitting}) => {
 
     return (
         <form onSubmit={handleSubmit}>
-
             <div className={s.taskParam}><span className={s.paramLabel}>Deadline </span>
                 <Field
 
@@ -46,14 +44,18 @@ let EditTaskForm = ({initialValues, handleSubmit}) => {
                     multiline
                     variant="outlined"/>
             </div>
-            <Button
-                type="submit"
-                variant="contained"
-                color="primary"
-                size="medium"
-            >
-                Save
-            </Button>
+            <div className={s.buttonWrapper}>
+                <Button
+                    disabled={submitting}
+                    type="submit"
+                    variant="contained"
+                    color="primary"
+                    size="medium"
+                >
+                    Save
+                </Button>
+                {submitting && <CircularProgress size={24} className={s.buttonProgress} />}
+            </div>
         </form>
     )
 }

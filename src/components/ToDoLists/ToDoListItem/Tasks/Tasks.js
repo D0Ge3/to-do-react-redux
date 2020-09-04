@@ -13,7 +13,7 @@ const Tasks = ({items, totalCount, currentPage, todolistId, addTask, updateTask,
     return (
         <Container>
             <Grid container spacing={4}>
-                <Grid item xs={6}>
+                <Grid item xs={12} md={6}>
                     <TaskList
                         isFetching={isFetching}
                         updateTaskTitle={updateTaskTitle}
@@ -27,7 +27,7 @@ const Tasks = ({items, totalCount, currentPage, todolistId, addTask, updateTask,
                         addTask={addTask}
                     />
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={12} md={6}>
                     <TaskDetails
                         // resetForm={resetForm}
                         todolistId={todolistId}

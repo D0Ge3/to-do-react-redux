@@ -18,8 +18,8 @@ const ToDoListItem = ({list, deleteToDoList, updateToDoListTitle, history}) => {
     const onChangeTitle = e => setNewTitle(e.target.value);
 
     return (
-        <ListItem button onClick={() => history.push(`/todo/${list.id}`)}>
-            <ListItemText >
+        <ListItem button>
+            <ListItemText onClick={() => history.push(`/todo/${list.id}`)} >
                 {editMode
                     ? <TextField className={s.listItemField} size="small" autoFocus value={newTitle} onChange={onChangeTitle} onBlur={saveItemTitle}/>
                     : <span className={s.listLink} >{list.title}</span>}
