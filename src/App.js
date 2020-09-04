@@ -4,11 +4,11 @@ import {Switch, Redirect, Route, BrowserRouter} from "react-router-dom";
 import Login from "./components/Login";
 import store from "./redux/reduxStore";
 import {Provider, useSelector, useDispatch} from "react-redux";
-import ToDoLists from "./components/ToDoLists/ToDoListsContainer";
+import ListListsContainer from "./components/ListLists/ListListsContainer";
 import {initializeApp} from "./redux/appReducer";
 import Preloader from "./components/common/Preloader";
 import Header from "./components/Header/Header";
-import ToDoListContainer from "./components/ToDoLists/ToDoListItem/Tasks/ToDoListContainer";
+import TasksContainer from "./components/Tasks/TasksContainer";
 import MomentUtils from "@date-io/moment";
 import {MuiPickersUtilsProvider} from "@material-ui/pickers";
 
@@ -27,13 +27,13 @@ let App = () => {
             {!isInitialized && <Preloader size="200px" isCenter={true} /> }
             {isInitialized && <Switch>
                 <Route path={"/login"}>
-                    <Login/>
+                    <Login />
                 </Route>
                 <Route path={"/todo/:listId"}>
-                    <ToDoListContainer />
+                    <TasksContainer />
                 </Route>
                 <Route path={"/todo"}>
-                    <ToDoLists/>
+                    <ListListsContainer />
                 </Route>
                 <Redirect from="/" to="/todo"/>
             </Switch>}
@@ -42,7 +42,7 @@ let App = () => {
 }
 
 
-const MainApp = (props) => {
+const MainApp = () => {
     return (
         <BrowserRouter>
             <Provider store={store}>

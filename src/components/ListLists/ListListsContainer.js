@@ -2,9 +2,9 @@ import React, {useEffect} from "react";
 import {useSelector, useDispatch} from "react-redux";
 import {Redirect} from "react-router-dom";
 import {addNewToDoList, deleteToDoList, getToDoLists, updateToDoListTitle} from "../../redux/toDoListsReducer";
-import ToDoLists from "./ToDoLists";
+import ListLists from "./ListLists";
 
-const ToDoListsContainer = () => {
+const ListListsContainer = () => {
 
     const dispatch = useDispatch();
     const isAuth = useSelector(state => state.auth.isAuth);
@@ -28,7 +28,7 @@ const ToDoListsContainer = () => {
     if (!isAuth) return <Redirect to="/login"/>;
     return (
         <>
-            <ToDoLists
+            <ListLists
                 isFetching={isFetching}
                 updateToDoListTitle={updateTitle}
                 deleteToDoList={deleteList}
@@ -38,4 +38,4 @@ const ToDoListsContainer = () => {
     )
 }
 
-export default ToDoListsContainer;
+export default ListListsContainer;

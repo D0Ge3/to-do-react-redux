@@ -3,7 +3,7 @@ import Typography from "@material-ui/core/Typography";
 import s from "./TaskDetails.module.css";
 import Button from "@material-ui/core/Button";
 import {Field, reduxForm} from "redux-form";
-import {DateTimeField, renderTextField} from "../../../../../common/FormsControls";
+import {DateTimeField, renderTextField} from "../../../common/FormsControls";
 import { TextField, CircularProgress } from "@material-ui/core";
 
 let EditTaskForm = ({initialValues, handleSubmit, submitting}) => {

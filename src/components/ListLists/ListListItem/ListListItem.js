@@ -6,7 +6,7 @@ import {DeleteOutline, EditOutlined} from "@material-ui/icons";
 import {TextField} from "@material-ui/core";
 import {withRouter} from "react-router-dom";
 
-const ToDoListItem = ({list, deleteToDoList, updateToDoListTitle, history}) => {
+const ListListItem = ({list, deleteToDoList, updateToDoListTitle, history}) => {
 
     let [editMode, setEditMode] = useState(false);
     let [newTitle, setNewTitle] = useState(list.title);
@@ -30,4 +30,4 @@ const ToDoListItem = ({list, deleteToDoList, updateToDoListTitle, history}) => {
     )
 }
 
-export default withRouter(ToDoListItem);
+export default withRouter(ListListItem);

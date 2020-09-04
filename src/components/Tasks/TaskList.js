@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import Button from "@material-ui/core/Button";
 import Task from "./Task/Task";
 import List from "@material-ui/core/List";
-import Preloader from "../../../common/Preloader";
+import Preloader from "../common/Preloader";
 import TextField from '@material-ui/core/TextField';
 import s from "./TaskList.module.css";
 

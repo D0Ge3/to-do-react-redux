@@ -2,11 +2,11 @@ import React, {useEffect} from "react";
 import {withRouter} from "react-router-dom";
 import {useSelector, useDispatch} from "react-redux";
 import {addTaskThunk, deleteTaskThunk, getTasksThunk, 
-    selectTaskAC, updateTaskThunk, updateTaskTitleThunk} from "../../../../redux/tasksReducer";
+    selectTaskAC, updateTaskThunk, updateTaskTitleThunk} from "../../redux/tasksReducer";
 import Tasks from "./Tasks";
 import {reset} from "redux-form";
 
-const ToDoListContainer = ({ match }) => {
+const TasksContainer = ({ match }) => {
     const todolistId = match.params.listId;
     const dispatch = useDispatch();
     const items = useSelector(state => state.tasks.items);
@@ -44,4 +44,4 @@ const ToDoListContainer = ({ match }) => {
 }
 
 
-export default withRouter(ToDoListContainer)
+export default withRouter(TasksContainer)

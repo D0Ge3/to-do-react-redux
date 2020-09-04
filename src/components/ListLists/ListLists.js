@@ -3,10 +3,10 @@ import s from "./ToDoLists.module.css";
 import {Container, Typography, TextField} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import List from "@material-ui/core/List";
-import ToDoListItem from "./ToDoListItem/ToDoListItem";
+import ListListItem from "./ToDoListItem/ListListItem";
 import Preloader from "../common/Preloader";
 
-const ToDoListAddForm = ({addToDoList}) => {
+const ListAddForm = ({addToDoList}) => {
 
     let [addMode, setAddMode] = useState(false);
     let [toDoListTitle, setToDoListTitle] = useState("");
@@ -41,8 +41,8 @@ const ToDoListAddForm = ({addToDoList}) => {
 
 
 
-const ToDoLists = ({lists, addToDoList, deleteToDoList, updateToDoListTitle, isFetching}) => {
-    let toDos = lists.map(l => <ToDoListItem
+const ListLists = ({lists, addToDoList, deleteToDoList, updateToDoListTitle, isFetching}) => {
+    let toDos = lists.map(l => <ListListItem
         key={l.id}
         list={l}
         deleteToDoList={deleteToDoList}
@@ -54,7 +54,7 @@ const ToDoLists = ({lists, addToDoList, deleteToDoList, updateToDoListTitle, isF
                 <Typography variant="h4">
                     ToDos
                 </Typography>
-                <ToDoListAddForm addToDoList={addToDoList} />
+                <ListAddForm addToDoList={addToDoList} />
                 <div className={s.list}>
                 {isFetching
                     ? <Preloader size="40px" isCenter={true}/>
@@ -68,4 +68,4 @@ const ToDoLists = ({lists, addToDoList, deleteToDoList, updateToDoListTitle, isF
     )
 }
 
-export default ToDoLists;
+export default ListLists;
