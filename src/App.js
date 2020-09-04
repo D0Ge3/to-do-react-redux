@@ -3,7 +3,7 @@ import './App.css';
 import {Switch, Redirect, Route, BrowserRouter} from "react-router-dom";
 import Login from "./components/Login";
 import store from "./redux/reduxStore";
-import {connect, Provider} from "react-redux";
+import {Provider, useSelector, useDispatch} from "react-redux";
 import ToDoLists from "./components/ToDoLists/ToDoListsContainer";
 import {initializeApp} from "./redux/appReducer";
 import Preloader from "./components/common/Preloader";
@@ -13,9 +13,12 @@ import MomentUtils from "@date-io/moment";
 import {MuiPickersUtilsProvider} from "@material-ui/pickers";
 
 
-let App = ({isInitialized, initializeApp}) => {
+let App = () => {
+    const dispatch = useDispatch();
+    const isInitialized = useSelector(state => state.app.isInitialized);
+
     useEffect(() => {
-        initializeApp();
+        dispatch(initializeApp());
     }, []);
 
     return (
@@ -38,13 +41,6 @@ let App = ({isInitialized, initializeApp}) => {
     );
 }
 
-const mapDispatchToProps = (state) => {
-    return {
-        isInitialized: state.app.isInitialized
-    }
-}
-
-App = connect(mapDispatchToProps, {initializeApp})(App)
 
 const MainApp = (props) => {
     return (

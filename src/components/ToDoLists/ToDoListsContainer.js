@@ -1,41 +1,41 @@
 import React, {useEffect} from "react";
-import {connect} from "react-redux";
-import {logout} from "../../redux/authReducer";
+import {useSelector, useDispatch} from "react-redux";
 import {Redirect} from "react-router-dom";
 import {addNewToDoList, deleteToDoList, getToDoLists, updateToDoListTitle} from "../../redux/toDoListsReducer";
 import ToDoLists from "./ToDoLists";
 
-const ToDoListsContainer = ({logout, isAuth, getToDoLists, lists, addNewToDoList, isFetching,
-                                deleteToDoList, updateToDoListTitle}) => {
+const ToDoListsContainer = () => {
+
+    const dispatch = useDispatch();
+    const isAuth = useSelector(state => state.auth.isAuth);
+    const lists = useSelector(state => state.toDoLists.lists);
+    const isFetching = useSelector(state => state.toDoLists.isFetching);
+    
     useEffect(() => {
         if (isAuth) {
-            getToDoLists();
+            dispatch(getToDoLists());
         }
     }, [])
 
+
     const addToDoList = (title) => {
-        addNewToDoList(title);
+        dispatch(addNewToDoList(title));
     }
+    
+    const updateTitle = (todolistId, title) => dispatch(updateToDoListTitle(todolistId, title));
+    const deleteList = (todolistId) => dispatch(deleteToDoList(todolistId));
 
     if (!isAuth) return <Redirect to="/login"/>;
     return (
         <>
             <ToDoLists
                 isFetching={isFetching}
-                updateToDoListTitle={updateToDoListTitle}
-                deleteToDoList={deleteToDoList}
+                updateToDoListTitle={updateTitle}
+                deleteToDoList={deleteList}
                 addToDoList={addToDoList}
                 lists={lists} />
         </>
     )
 }
 
-const mapStateToProps = (state) => {
-    return {
-        isAuth: state.auth.isAuth,
-        lists: state.toDoLists.lists,
-        isFetching: state.toDoLists.isFetching
-    }
-}
-
-export default connect(mapStateToProps, {logout, getToDoLists, addNewToDoList, deleteToDoList, updateToDoListTitle})(ToDoListsContainer);
+export default ToDoListsContainer;

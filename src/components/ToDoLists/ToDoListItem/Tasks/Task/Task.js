@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import ListItemText from "@material-ui/core/ListItemText";
 import s from "./Task.module.css";
 import {TextField} from "@material-ui/core";
@@ -9,6 +9,11 @@ import ListItem from "@material-ui/core/ListItem";
 const Task = ({task, selectTask, selectedItemId, deleteTask, todolistId, updateTaskTitle}) => {
     let [editMode, setEditMode] = useState(false);
     let [newTitle, setNewTitle] = useState(task.title);
+    
+    useEffect(() => {
+        setNewTitle(task.title);
+    }, [task]);
+
     const onChangeTitle = e => setNewTitle(e.target.value);
     const saveNewTitle = () => {
         updateTaskTitle(todolistId, task, newTitle);

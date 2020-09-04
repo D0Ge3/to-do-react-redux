@@ -55,11 +55,11 @@ export const setTotalCount = (totalCount) => ({type: SET_TOTAL_COUNT, totalCount
 export const setCurrentPage = (page) => ({type: SET_CURRENT_PAGE, page});
 export const addTaskAC = (task) => ({type: ADD_TASK, task});
 export const deleteTaskAC = (taskId) => ({type: DELETE_TASK, taskId});
-export const selectTask = (taskId) => ({type: SELECT_TASK, taskId});
+export const selectTaskAC = (taskId) => ({type: SELECT_TASK, taskId});
 export const updateTaskAC = (task) => ({type: UPDATE_TASK, task})
 export const toggleIsFetchingTasks = () => ({type: TOGGLE_IS_FETCHING});
 
-export const getTasks = (todolistId, count, page) => async (dispatch) => {
+export const getTasksThunk = (todolistId, count, page) => async (dispatch) => {
     dispatch(toggleIsFetchingTasks());
     const data = await tasksAPI.getTasks(todolistId, count, page);
     if (data.status === 200) {
@@ -70,28 +70,28 @@ export const getTasks = (todolistId, count, page) => async (dispatch) => {
     }
 }
 
-export const addTask = (todolistId, title) => async (dispatch) => {
+export const addTaskThunk = (todolistId, title) => async (dispatch) => {
     const data = await tasksAPI.addTask(todolistId, title);
     if (data.resultCode === 0) {
         dispatch(addTaskAC(data.data.item));
     }
 }
 
-export const deleteTask = (todolistId, taskId) => async (dispatch) => {
+export const deleteTaskThunk = (todolistId, taskId) => async (dispatch) => {
     const data = await tasksAPI.deleteTask(todolistId, taskId);
     if (data.resultCode === 0) {
         dispatch(deleteTaskAC(taskId));
     }
 }
 
-export const updateTaskTitle = (todolistId, task, newTitle) => async (dispatch) => {
+export const updateTaskTitleThunk = (todolistId, task, newTitle) => async (dispatch) => {
     const data = await tasksAPI.updateTask(todolistId, task.id, {...task, title: newTitle});
     if (data.resultCode === 0) {
         dispatch(updateTaskAC({...task, title: newTitle}));
     }
 }
 
-export const updateTask = (taskData) => async (dispatch) => {
+export const updateTaskThunk = (taskData) => async (dispatch) => {
     const data = await tasksAPI.updateTask(taskData.todoListId, taskData.id, taskData);
     if (data.resultCode === 0) {
         dispatch(updateTaskAC(data.data.item));
