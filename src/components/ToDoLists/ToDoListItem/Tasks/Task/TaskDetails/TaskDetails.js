@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import Typography from "@material-ui/core/Typography";
 import s from "./TaskDetails.module.css";
 import Button from "@material-ui/core/Button";

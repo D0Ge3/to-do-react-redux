@@ -1,9 +1,8 @@
 import React, {useState} from "react";
 import ListItemText from "@material-ui/core/ListItemText";
-import {NavLink} from "react-router-dom";
 import s from "./ToDoListItem.module.css";
 import ListItem from "@material-ui/core/ListItem";
-import {DeleteOutline, Edit, EditOutlined} from "@material-ui/icons";
+import {DeleteOutline, EditOutlined} from "@material-ui/icons";
 import {TextField} from "@material-ui/core";
 import {withRouter} from "react-router-dom";
 

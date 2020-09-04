@@ -1,7 +1,7 @@
 import React from "react";
-import {Field, reduxForm, submit} from "redux-form";
+import {Field, reduxForm} from "redux-form";
 import {connect} from "react-redux";
-import {CheckboxRedux, InputRedux, renderCheckbox, renderTextField} from "./common/FormsControls";
+import {renderCheckbox, renderTextField} from "./common/FormsControls";
 import {login} from "../redux/authReducer";
 import s from "./Login.module.css";
 import {Redirect} from "react-router-dom";

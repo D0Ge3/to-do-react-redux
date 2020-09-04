@@ -5,7 +5,6 @@ import List from "@material-ui/core/List";
 import Preloader from "../../../common/Preloader";
 import TextField from '@material-ui/core/TextField';
 import s from "./TaskList.module.css";
-import { Typography } from '@material-ui/core';
 
 
 const AddTaskForm = ({todolistId, addTask}) => {

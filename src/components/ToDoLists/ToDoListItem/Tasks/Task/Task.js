@@ -1,9 +1,8 @@
 import React, {useState} from "react";
 import ListItemText from "@material-ui/core/ListItemText";
 import s from "./Task.module.css";
-import {Input, TextField} from "@material-ui/core";
-import {NavLink} from "react-router-dom";
-import {DeleteOutline, EditOutlined} from "@material-ui/icons";
+import {TextField} from "@material-ui/core";
+import {DeleteOutline} from "@material-ui/icons";
 import ListItem from "@material-ui/core/ListItem";
 
 
