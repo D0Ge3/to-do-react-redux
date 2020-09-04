@@ -9,7 +9,6 @@ import Radio from "@material-ui/core/Radio";
 import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
 import {KeyboardDateTimePicker} from "@material-ui/pickers";
-import s from "../ToDoLists/ToDoListItem/Tasks/Task/TaskDetails/TaskDetails.module.css";
 
 
 export const renderTextField = ({

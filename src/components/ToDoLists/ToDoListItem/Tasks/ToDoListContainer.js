@@ -17,7 +17,7 @@ const ToDoListContainer = ({ match }) => {
 
     useEffect(() => {
         dispatch(getTasksThunk(todolistId, 20, 1));
-    }, [])
+    }, [todolistId])
 
     const updateTask = (taskData) => dispatch(updateTaskThunk(taskData));
     const resetForm = (form) => dispatch(reset(form));

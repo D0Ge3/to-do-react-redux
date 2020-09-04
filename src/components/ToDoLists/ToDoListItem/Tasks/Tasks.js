@@ -1,6 +1,5 @@
 import React, {useEffect} from "react";
 import {Container} from "@material-ui/core";
-import s from "./TaskList.module.css";
 import TaskDetails from "./Task/TaskDetails/TaskDetails";
 import Grid from "@material-ui/core/Grid";
 import TaskList from "./TaskList";
