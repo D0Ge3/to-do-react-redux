@@ -3,7 +3,7 @@ import s from "./ToDoLists.module.css";
 import {Container, Typography, TextField} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import List from "@material-ui/core/List";
-import ListListItem from "./ToDoListItem/ListListItem";
+import ListListItem from "./ListListItem/ListListItem";
 import Preloader from "../common/Preloader";
 
 const ListAddForm = ({addToDoList}) => {
