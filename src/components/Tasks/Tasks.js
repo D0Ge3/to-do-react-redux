@@ -3,12 +3,14 @@ import {Container} from "@material-ui/core";
 import TaskDetails from "./Task/TaskDetails/TaskDetails";
 import Grid from "@material-ui/core/Grid";
 import TaskList from "./TaskList";
+import { Pagination } from '@material-ui/lab';
 
 
-const Tasks = ({items, totalCount, currentPage, todolistId, addTask, updateTask, isFetching,
+const Tasks = ({items, totalCount, currentPage, pageSize, changePage, todolistId, addTask, updateTask, isFetching,
                    selectTask, selectedItem, deleteTask, updateTaskTitle}) => {
 
-    useEffect(() => () => selectTask(null), []);               
+    useEffect(() => () => selectTask(null), []);
+
     return (
         <Container>
             <Grid container spacing={4}>
@@ -20,15 +22,13 @@ const Tasks = ({items, totalCount, currentPage, todolistId, addTask, updateTask,
                         selectedItemId={selectedItem.id}
                         selectTask={selectTask}
                         items={items}
-                        totalCount={totalCount}
-                        currentPage={currentPage}
                         todolistId={todolistId}
                         addTask={addTask}
                     />
+                    {totalCount > pageSize && <Pagination onChange={changePage} page={currentPage} count={Math.ceil(totalCount/pageSize)} />}
                 </Grid>
                 <Grid item xs={12} md={6}>
                     <TaskDetails
-                        // resetForm={resetForm}
                         todolistId={todolistId}
                         updateTaskTitle={updateTaskTitle}
                         updateTask={updateTask}

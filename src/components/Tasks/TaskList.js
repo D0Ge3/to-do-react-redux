@@ -7,6 +7,7 @@ import TextField from '@material-ui/core/TextField';
 import s from "./TaskList.module.css";
 
 
+
 const AddTaskForm = ({todolistId, addTask}) => {
 
     let [task, setTask] = useState("");
@@ -23,9 +24,9 @@ const AddTaskForm = ({todolistId, addTask}) => {
     )
 }
 
-const TaskList = ({items, totalCount, currentPage, todolistId, addTask, isFetching,
+const TaskList = ({items, todolistId, addTask, isFetching,
                       selectTask, selectedItemId, deleteTask, updateTaskTitle}) => {
-
+                          
     const tasks = items.map(t => <Task key={t.id} task={t}
         updateTaskTitle={updateTaskTitle}
         todolistId={todolistId}
@@ -45,6 +46,7 @@ const TaskList = ({items, totalCount, currentPage, todolistId, addTask, isFetchi
                         </List>
                     : <span className={s.noTasksTitle}>No tasks!</span>
             }
+            
             </div>
         </>
     )

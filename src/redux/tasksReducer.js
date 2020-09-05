@@ -5,16 +5,18 @@ const SET_TOTAL_COUNT = "tasks/SET_TOTAL_COUNT";
 const SET_CURRENT_PAGE = "tasks/SET_CURRENT_PAGE";
 const ADD_TASK = "tasks/ADD_TASK";
 const SELECT_TASK = "tasks/SELECT_TASK";
+const UNSELECT_TASK = "tasks/UNSELECT_TASK";
 const DELETE_TASK = "tasks/DELETE_TASK";
 const UPDATE_TASK = "tasks/UPDATE_TASK";
 const TOGGLE_IS_FETCHING = "tasks/TOGGLE_IS_FETCHING";
 
 const initialState = {
     items: [],
+    selectedItem: {},
+    isFetching: false,
     totalCount: null,
     currentPage: 1,
-    selectedItem: {},
-    isFetching: false
+    pageSize: 10,
 }
 
 const tasksReducer = (state = initialState, action) => {
@@ -45,6 +47,8 @@ const tasksReducer = (state = initialState, action) => {
                 };
         case TOGGLE_IS_FETCHING:
             return {...state, isFetching: !state.isFetching};
+        case UNSELECT_TASK:
+            return {...state, selectedItem: {}};
         default:
             return state
     }
@@ -56,8 +60,9 @@ export const setCurrentPage = (page) => ({type: SET_CURRENT_PAGE, page});
 export const addTaskAC = (task) => ({type: ADD_TASK, task});
 export const deleteTaskAC = (taskId) => ({type: DELETE_TASK, taskId});
 export const selectTaskAC = (taskId) => ({type: SELECT_TASK, taskId});
-export const updateTaskAC = (task) => ({type: UPDATE_TASK, task})
+export const updateTaskAC = (task) => ({type: UPDATE_TASK, task});
 export const toggleIsFetchingTasks = () => ({type: TOGGLE_IS_FETCHING});
+export const unselectTaskAC = (taskId) => ({type: UNSELECT_TASK, taskId});
 
 export const getTasksThunk = (todolistId, count, page) => async (dispatch) => {
     dispatch(toggleIsFetchingTasks());
@@ -70,17 +75,22 @@ export const getTasksThunk = (todolistId, count, page) => async (dispatch) => {
     }
 }
 
-export const addTaskThunk = (todolistId, title) => async (dispatch) => {
+export const addTaskThunk = (todolistId, title) => async (dispatch, getState) => {
     const data = await tasksAPI.addTask(todolistId, title);
     if (data.resultCode === 0) {
-        dispatch(addTaskAC(data.data.item));
+        //dispatch(addTaskAC(data.data.item));
+        const {pageSize, currentPage} = getState().tasks;
+        dispatch(getTasksThunk(todolistId, pageSize, currentPage));
     }
 }
 
-export const deleteTaskThunk = (todolistId, taskId) => async (dispatch) => {
+export const deleteTaskThunk = (todolistId, taskId) => async (dispatch, getState) => {
     const data = await tasksAPI.deleteTask(todolistId, taskId);
     if (data.resultCode === 0) {
-        dispatch(deleteTaskAC(taskId));
+        dispatch(unselectTaskAC(taskId));
+        let {pageSize, currentPage, totalCount} = getState().tasks;
+        if (Number.isInteger((totalCount-1)/pageSize) && totalCount>pageSize) currentPage = currentPage-1;
+        dispatch(getTasksThunk(todolistId, pageSize, currentPage));
     }
 }
 

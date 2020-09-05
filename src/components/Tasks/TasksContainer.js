@@ -1,10 +1,9 @@
 import React, {useEffect} from "react";
 import {withRouter} from "react-router-dom";
 import {useSelector, useDispatch} from "react-redux";
-import {addTaskThunk, deleteTaskThunk, getTasksThunk, 
+import {addTaskThunk, deleteTaskThunk, getTasksThunk, setCurrentPage,
     selectTaskAC, updateTaskThunk, updateTaskTitleThunk} from "../../redux/tasksReducer";
 import Tasks from "./Tasks";
-import {reset} from "redux-form";
 
 const TasksContainer = ({ match }) => {
     const todolistId = match.params.listId;
@@ -14,21 +13,24 @@ const TasksContainer = ({ match }) => {
     const currentPage = useSelector(state => state.tasks.currentPage);
     const selectedItem = useSelector(state => state.tasks.selectedItem);
     const isFetching = useSelector(state => state.tasks.isFetching);
+    const pageSize = useSelector(state => state.tasks.pageSize);
 
     useEffect(() => {
-        dispatch(getTasksThunk(todolistId, 20, 1));
-    }, [todolistId])
+        dispatch(getTasksThunk(todolistId, pageSize, currentPage));
+    }, [todolistId, currentPage])
 
     const updateTask = (taskData) => dispatch(updateTaskThunk(taskData));
-    const resetForm = (form) => dispatch(reset(form));
     const updateTaskTitle = (todolistId, task, newTitle) => dispatch(updateTaskTitleThunk(todolistId, task, newTitle));
     const deleteTask = (todolistId, taskId) => dispatch(deleteTaskThunk(todolistId, taskId));
     const selectTask = (taskId) => dispatch(selectTaskAC(taskId));
     const addTask = (todolistId, title) => dispatch(addTaskThunk(todolistId, title));
 
+    const changePage = (object, page) => dispatch(setCurrentPage(page)); 
+
     return (
         <Tasks
-            resetForm={resetForm}
+            changePage={changePage}
+            pageSize={pageSize}
             isFetching={isFetching}
             updateTask={updateTask}
             updateTaskTitle={updateTaskTitle}
@@ -40,7 +42,8 @@ const TasksContainer = ({ match }) => {
             items={items}
             totalCount={totalCount}
             currentPage={currentPage}
-        />)
+        />
+        )
 }
 
 
