@@ -1,4 +1,5 @@
 import {todoListsAPI} from "../api/api";
+import { catchNetworkError } from './helpers/catchNetworkError';
 
 const SET_TODO_LISTS = "toDoLists/SET_TODO_LISTS";
 const TOGGLE_IS_FETCHING = "toDoLists/TOGGLE_IS_FETCHING";
@@ -23,32 +24,51 @@ export const setToDoLists = (lists) => ({type: SET_TODO_LISTS, lists});
 export const toggleIsFetchingLists = () => ({type: TOGGLE_IS_FETCHING});
 
 export const getToDoLists = () => async (dispatch) => {
-    dispatch(toggleIsFetchingLists());
-    const data = await todoListsAPI.todoLists();
-    if (data.status === 200) {
-        dispatch(setToDoLists(data.data));
+    try {
         dispatch(toggleIsFetchingLists());
+        const res = await todoListsAPI.todoLists();
+        if (res.status === 200) {
+            dispatch(setToDoLists(res.data));
+            dispatch(toggleIsFetchingLists());
+        }
+    } catch (error) {
+        catchNetworkError(error, dispatch, () => dispatch(toggleIsFetchingLists()))
     }
+    
 }
 
 export const addNewToDoList = (title) => async (dispatch) => {
-    const data = await todoListsAPI.addNewList(title);
-    if (data.resultCode === 0) {
-        dispatch(getToDoLists());
+    try {
+        const res = await todoListsAPI.addNewList(title);
+        if (res.data.resultCode === 0) {
+            dispatch(getToDoLists());
+        }
+    } catch (error) {
+        catchNetworkError(error, dispatch)
     }
+
 }
 
 export const deleteToDoList = (todolistId) => async (dispatch) => {
-    const data = await todoListsAPI.deleteList(todolistId);
-    if (data.resultCode === 0) {
-        dispatch(getToDoLists());
+    try {
+        const res = await todoListsAPI.deleteList(todolistId);
+        if (res.data.resultCode === 0) {
+            dispatch(getToDoLists());
+        }
+    } catch (error) {
+        catchNetworkError(error, dispatch)
     }
+
 }
 
 export const updateToDoListTitle = (todolistId, title) => async (dispatch) => {
-    const data = await todoListsAPI.updateListTitle(todolistId, title);
-    if (data.resultCode === 0) {
-        dispatch(getToDoLists());
+    try {
+        const res = await todoListsAPI.updateListTitle(todolistId, title);
+        if (res.data.resultCode === 0) {
+            dispatch(getToDoLists());
+        }
+    } catch (error) {
+        catchNetworkError(error, dispatch)
     }
 }
 

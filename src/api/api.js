@@ -25,13 +25,13 @@ export const todoListsAPI = {
         return instance.get("/todo-lists").then(res => res);
     },
     addNewList(title) {
-        return instance.post("/todo-lists", {title}).then(res => res.data);
+        return instance.post("/todo-lists", {title}).then(res => res);
     },
     deleteList(todolistId) {
-        return instance.delete(`/todo-lists/${todolistId}`).then(res => res.data);
+        return instance.delete(`/todo-lists/${todolistId}`).then(res => res);
     },
     updateListTitle(todolistId, title) {
-        return instance.put(`/todo-lists/${todolistId}`, {title}).then(res => res.data);
+        return instance.put(`/todo-lists/${todolistId}`, {title}).then(res => res);
     },
     reorderList(todolistId, putAfterItemId) {
         //Target todolist will be order after this todolist.
@@ -45,7 +45,7 @@ export const tasksAPI = {
             .then(res => res);
     },
     addTask(todolistId, title) {
-        return instance.post(`/todo-lists/${todolistId}/tasks`, {title}).then(res => res.data);
+        return instance.post(`/todo-lists/${todolistId}/tasks`, {title}).then(res => res);
     },
     reorderTask(todolistId, taskId, putAfterItemId) {
         //Target task will be moved after this task.
@@ -54,10 +54,10 @@ export const tasksAPI = {
             .then(res => res.data);
     },
     deleteTask(todolistId, taskId) {
-        return instance.delete(`/todo-lists/${todolistId}/tasks/${taskId}`).then(res => res.data);
+        return instance.delete(`/todo-lists/${todolistId}/tasks/${taskId}`).then(res => res);
     },
     updateTask(todolistId, taskId, taskData) {
-        return instance.put(`/todo-lists/${todolistId}/tasks/${taskId}`, taskData).then(res => res.data);
+        return instance.put(`/todo-lists/${todolistId}/tasks/${taskId}`, taskData).then(res => res);
     }
 }
 

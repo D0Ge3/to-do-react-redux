@@ -11,11 +11,13 @@ import Header from "./components/Header/Header";
 import TasksContainer from "./components/Tasks/TasksContainer";
 import MomentUtils from "@date-io/moment";
 import {MuiPickersUtilsProvider} from "@material-ui/pickers";
+import Alert from "./components/common/Alert";
 
 
 let App = () => {
     const dispatch = useDispatch();
     const isInitialized = useSelector(state => state.app.isInitialized);
+    const error = useSelector(state => state.app.error);
 
     useEffect(() => {
         dispatch(initializeApp());
@@ -23,6 +25,7 @@ let App = () => {
 
     return (
         <>
+            {error && <Alert message={error} />}
             <Header />
             {!isInitialized && <Preloader size="200px" isCenter={true} /> }
             {isInitialized && <Switch>

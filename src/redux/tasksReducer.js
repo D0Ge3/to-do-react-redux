@@ -1,4 +1,6 @@
 import {tasksAPI} from "../api/api";
+import { setError } from "./appReducer";
+import { catchNetworkError } from './helpers/catchNetworkError';
 
 const SET_TASKS = "tasks/SET_TASKS";
 const SET_TOTAL_COUNT = "tasks/SET_TOTAL_COUNT";
@@ -66,46 +68,71 @@ export const unselectTaskAC = (taskId) => ({type: UNSELECT_TASK, taskId});
 
 export const getTasksThunk = (todolistId, count, page) => async (dispatch) => {
     dispatch(toggleIsFetchingTasks());
-    const data = await tasksAPI.getTasks(todolistId, count, page);
-    if (data.status === 200) {
-        dispatch(setTotalCount(data.data.totalCount));
-        dispatch(setCurrentPage(page));
-        dispatch(setTasks(data.data.items));
-        dispatch(toggleIsFetchingTasks());
+    try {
+        const data = await tasksAPI.getTasks(todolistId, count, page);
+        if (data.status === 200) {
+            dispatch(setTotalCount(data.data.totalCount));
+            dispatch(setCurrentPage(page));
+            dispatch(setTasks(data.data.items));
+            dispatch(toggleIsFetchingTasks());
+        }
+    } catch (error) {
+        catchNetworkError(error, dispatch, () => dispatch(toggleIsFetchingTasks()))
     }
+    
 }
 
 export const addTaskThunk = (todolistId, title) => async (dispatch, getState) => {
-    const data = await tasksAPI.addTask(todolistId, title);
-    if (data.resultCode === 0) {
-        //dispatch(addTaskAC(data.data.item));
-        const {pageSize, currentPage} = getState().tasks;
-        dispatch(getTasksThunk(todolistId, pageSize, currentPage));
+    try {
+        const res = await tasksAPI.addTask(todolistId, title);
+        if (res.data.resultCode === 0) {
+            //dispatch(addTaskAC(data.data.item));
+            const {pageSize, currentPage} = getState().tasks;
+            dispatch(getTasksThunk(todolistId, pageSize, currentPage));
+        }
+    } catch (error) {
+        catchNetworkError(error, dispatch)
     }
+    
 }
 
 export const deleteTaskThunk = (todolistId, taskId) => async (dispatch, getState) => {
-    const data = await tasksAPI.deleteTask(todolistId, taskId);
-    if (data.resultCode === 0) {
-        dispatch(unselectTaskAC(taskId));
-        let {pageSize, currentPage, totalCount} = getState().tasks;
-        if (Number.isInteger((totalCount-1)/pageSize) && totalCount>pageSize) currentPage = currentPage-1;
-        dispatch(getTasksThunk(todolistId, pageSize, currentPage));
+    try {
+        const res = await tasksAPI.deleteTask(todolistId, taskId);
+        if (res.data.resultCode === 0) {
+            dispatch(unselectTaskAC(taskId));
+            let {pageSize, currentPage, totalCount} = getState().tasks;
+            if (Number.isInteger((totalCount-1)/pageSize) && totalCount>pageSize) currentPage = currentPage-1;
+            dispatch(getTasksThunk(todolistId, pageSize, currentPage));
+        }
+    } catch (error) {
+        catchNetworkError(error, dispatch)
     }
+    
 }
 
 export const updateTaskTitleThunk = (todolistId, task, newTitle) => async (dispatch) => {
-    const data = await tasksAPI.updateTask(todolistId, task.id, {...task, title: newTitle});
-    if (data.resultCode === 0) {
-        dispatch(updateTaskAC({...task, title: newTitle}));
+    try {
+        const res = await tasksAPI.updateTask(todolistId, task.id, {...task, title: newTitle});
+        if (res.data.resultCode === 0) {
+            dispatch(updateTaskAC({...task, title: newTitle}));
+        }
+    } catch (error) {
+        catchNetworkError(error, dispatch)
     }
+    
 }
 
 export const updateTaskThunk = (taskData) => async (dispatch) => {
-    const data = await tasksAPI.updateTask(taskData.todoListId, taskData.id, taskData);
-    if (data.resultCode === 0) {
-        dispatch(updateTaskAC(data.data.item));
+    try {
+        const res = await tasksAPI.updateTask(taskData.todoListId, taskData.id, taskData);
+        if (res.data.resultCode === 0) {
+            dispatch(updateTaskAC(res.data.data.item));
+        }
+    } catch (error) {
+        catchNetworkError(error, dispatch)
     }
+
 }
 
 export default tasksReducer;
