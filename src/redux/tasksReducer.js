@@ -1,5 +1,4 @@
 import {tasksAPI} from "../api/api";
-import { setError } from "./appReducer";
 import { catchNetworkError } from './helpers/catchNetworkError';
 
 const SET_TASKS = "tasks/SET_TASKS";

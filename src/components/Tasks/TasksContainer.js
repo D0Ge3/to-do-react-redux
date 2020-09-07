@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import {withRouter} from "react-router-dom";
+import {withRouter, Redirect} from "react-router-dom";
 import {useSelector, useDispatch} from "react-redux";
 import {addTaskThunk, deleteTaskThunk, getTasksThunk, setCurrentPage,
     selectTaskAC, updateTaskThunk, updateTaskTitleThunk} from "../../redux/tasksReducer";
@@ -14,6 +14,7 @@ const TasksContainer = ({ match }) => {
     const selectedItem = useSelector(state => state.tasks.selectedItem);
     const isFetching = useSelector(state => state.tasks.isFetching);
     const pageSize = useSelector(state => state.tasks.pageSize);
+    const isAuth = useSelector(state => state.auth.isAuth);
 
     useEffect(() => {
         dispatch(getTasksThunk(todolistId, pageSize, currentPage));
@@ -27,6 +28,7 @@ const TasksContainer = ({ match }) => {
 
     const changePage = (object, page) => dispatch(setCurrentPage(page)); 
 
+    if (!isAuth) return <Redirect to="/login"/>
     return (
         <Tasks
             changePage={changePage}
