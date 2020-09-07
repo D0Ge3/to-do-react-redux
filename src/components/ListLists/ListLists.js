@@ -1,45 +1,10 @@
-import React, {useState} from "react";
+import React from "react";
 import s from "./ListLists.module.css";
-import {Container, Typography, TextField} from "@material-ui/core";
-import Button from "@material-ui/core/Button";
+import {Container, Typography} from "@material-ui/core";
 import List from "@material-ui/core/List";
 import ListListItem from "./ListListItem/ListListItem";
 import Preloader from "../common/Preloader";
-
-const ListAddForm = ({addToDoList}) => {
-
-    let [addMode, setAddMode] = useState(false);
-    let [toDoListTitle, setToDoListTitle] = useState("");
-
-    const activateAddMode = () => {
-        setAddMode(true);
-    }
-
-    const deactivateAddMode = () => {
-        setAddMode(false);
-    }
-
-    const onChangeNewList = e => setToDoListTitle(e.target.value);
-    const addNewList = () => {
-        addToDoList(toDoListTitle);
-        setToDoListTitle("");
-    }
-    if (addMode) {
-    return (
-        <div className={s.addListForm}>
-            <TextField size="small" placeholder="New list" variant="outlined" value={toDoListTitle} onChange={onChangeNewList} />
-            <Button variant="contained" color="primary" onClick={addNewList}>Add</Button>
-            <Button variant="contained" color="primary" onClick={deactivateAddMode}>Cancel</Button>
-        </div>
-    )
-    } else {
-        return (
-            <Button variant="contained" color="primary" onClick={activateAddMode}>+ New ToDo</Button>
-        )
-    }
-}
-
-
+import ListAddForm from './ListAddForm';
 
 const ListLists = ({lists, addToDoList, deleteToDoList, updateToDoListTitle, isFetching}) => {
     let toDos = lists.map(l => <ListListItem
