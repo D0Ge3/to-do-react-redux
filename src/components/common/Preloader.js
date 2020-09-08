@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { CircularProgress } from '@material-ui/core';
 
 export const Preloader = ({ size, isCenter }) => {
@@ -8,5 +9,3 @@ export const Preloader = ({ size, isCenter }) => {
     </div>
   );
 };
-
-export default Preloader;

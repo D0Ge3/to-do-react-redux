@@ -1,28 +1,19 @@
-// Я топлю за то, чтобы импорты были структурированы и не превращались в кашу, покажу на примере этого компонента
-
-// Сналача я ставлю импорты из внешних библиотек
 import React, { useEffect } from 'react';
-import { Switch, Redirect, Route, BrowserRouter } from 'react-router-dom';
-import { Provider, useSelector, useDispatch } from 'react-redux';
-import MomentUtils from '@date-io/moment';
-import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import { Switch, Redirect, Route } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
-// Потом какие-нибудь утилзы, например, стор и редьюсеры
-import store from './redux/reduxStore';
 import { initializeApp } from './redux/appReducer';
 
-// Потом компоненты
 import Login from './components/Login/Login';
-import ListListsContainer from './components/ListLists/ListListsContainer';
-import Preloader from './components/common/Preloader';
+import ListsContainer from './components/Lists/ListsContainer';
+import { Preloader } from './components/common';
 import Header from './components/Header/Header';
 import TasksContainer from './components/Tasks/TasksContainer';
-import Alert from './components/common/Alert';
+import { Alert } from './components/common';
 
-// В конце локальные файлы внутри директории
 import './App.css';
 
-let App = () => {
+const App = () => {
   const dispatch = useDispatch();
   const isInitialized = useSelector((state) => state.app.isInitialized);
   const error = useSelector((state) => state.app.error);
@@ -45,7 +36,7 @@ let App = () => {
             <TasksContainer />
           </Route>
           <Route path={'/todo'}>
-            <ListListsContainer />
+            <ListsContainer />
           </Route>
           <Redirect from="/" to="/todo" />
         </Switch>
@@ -54,16 +45,5 @@ let App = () => {
   );
 };
 
-// Обычно в App.js нет особо логики, можно тут оставить роутер, а 'MainApp' полностью перенести в index.js
-const MainApp = () => {
-  return (
-    <BrowserRouter>
-      <Provider store={store}>
-        <MuiPickersUtilsProvider utils={MomentUtils}>
-          <App />
-        </MuiPickersUtilsProvider>
-      </Provider>
-    </BrowserRouter>
-  );
-};
-export default MainApp;
+
+export default App;

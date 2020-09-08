@@ -1,7 +1,9 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { login, getCaptcha } from '../../redux/authReducer';
 import { Redirect } from 'react-router-dom';
+
+import { login, getCaptcha } from '../../redux/authReducer';
+
 import { Container } from '@material-ui/core';
 import LoginForm from './LoginForm';
 
@@ -14,18 +16,18 @@ const Login = () => {
     const { email, password, rememberMe, captcha } = formData;
     dispatch(login(email, password, rememberMe, captcha));
   };
-  // Аналогично ListContainer
-  if (isAuth) return <Redirect to="/todo" />;
-  return (
-    <Container>
-      <LoginForm
-        getCaptcha={() => dispatch(getCaptcha())}
-        captchaUrl={captchaUrl}
-        isFetchingLogin={isFetchingLogin}
-        onSubmit={onSubmit}
-      />
-    </Container>
-  );
+
+  return isAuth ? (
+      <Redirect to="/todo" />
+    ) : (
+      <Container>
+        <LoginForm
+          getCaptcha={() => dispatch(getCaptcha())}
+          captchaUrl={captchaUrl}
+          isFetchingLogin={isFetchingLogin}
+          onSubmit={onSubmit}
+        />
+      </Container>)
 };
 
 export default Login;

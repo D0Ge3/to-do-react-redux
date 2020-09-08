@@ -1,16 +1,17 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+
 import {
   addNewToDoList,
   deleteToDoList,
   getToDoLists,
   updateToDoListTitle,
 } from '../../redux/toDoListsReducer';
-import ListLists from './ListLists';
 
-// Оч стремно звучит, попробуй ListContainer, аналогично в других файлах
-const ListListsContainer = () => {
+import Lists from './Lists';
+
+const ListsContainer = () => {
   const dispatch = useDispatch();
   const isAuth = useSelector((state) => state.auth.isAuth);
   const lists = useSelector((state) => state.toDoLists.lists);
@@ -22,28 +23,21 @@ const ListListsContainer = () => {
     }
   }, []);
 
-  const addToDoList = (title) => {
-    dispatch(addNewToDoList(title));
-  };
-
+  const addToDoList = (title) => dispatch(addNewToDoList(title));
   const updateTitle = (todolistId, title) => dispatch(updateToDoListTitle(todolistId, title));
   const deleteList = (todolistId) => dispatch(deleteToDoList(todolistId));
 
-  // Можно переделать вот так
-  /* return isAuth ? <Lists /> : <Redirect /> */
-  if (!isAuth) return <Redirect to="/login" />;
-  return (
-    // <> здесь не нужен
-    <>
-      <ListLists
+  return isAuth ? (
+      <Lists
         isFetching={isFetching}
         updateToDoListTitle={updateTitle}
         deleteToDoList={deleteList}
         addToDoList={addToDoList}
         lists={lists}
       />
-    </>
-  );
+    ) : (
+      <Redirect to="/login" />
+    );
 };
 
-export default ListListsContainer;
+export default ListsContainer;

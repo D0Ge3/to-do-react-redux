@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { withRouter } from 'react-router-dom';
+
 import ListItemText from '@material-ui/core/ListItemText';
-import s from './ListListItem.module.css';
 import ListItem from '@material-ui/core/ListItem';
 import { DeleteOutline, EditOutlined } from '@material-ui/icons';
 import { TextField } from '@material-ui/core';
-import { withRouter } from 'react-router-dom';
+
+import s from './ListListItem.module.css';
 
 const ListListItem = ({ list, deleteToDoList, updateToDoListTitle, history }) => {
   // Подключи здесь стор и обновляй его) Избавишься от двух уровней пробрасывания пропсов

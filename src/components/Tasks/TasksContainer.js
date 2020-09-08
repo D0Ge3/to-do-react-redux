@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { withRouter, Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+
 import {
   addTaskThunk,
   deleteTaskThunk,
@@ -10,6 +11,7 @@ import {
   updateTaskThunk,
   updateTaskTitleThunk,
 } from '../../redux/tasksReducer';
+
 import Tasks from './Tasks';
 
 const TasksContainer = ({ match }) => {
@@ -36,25 +38,25 @@ const TasksContainer = ({ match }) => {
   const addTask = (todolistId, title) => dispatch(addTaskThunk(todolistId, title));
 
   const changePage = (object, page) => dispatch(setCurrentPage(page));
-
-  if (!isAuth) return <Redirect to="/login" />;
-  return (
-    <Tasks
-      changePage={changePage}
-      pageSize={pageSize}
-      isFetching={isFetching}
-      updateTask={updateTask}
-      updateTaskTitle={updateTaskTitle}
-      deleteTask={deleteTask}
-      selectedItem={selectedItem}
-      selectTask={selectTask}
-      addTask={addTask}
-      todolistId={todolistId}
-      items={items}
-      totalCount={totalCount}
-      currentPage={currentPage}
-    />
-  );
+  
+  return isAuth ? (
+      <Tasks
+        changePage={changePage}
+        pageSize={pageSize}
+        isFetching={isFetching}
+        updateTask={updateTask}
+        updateTaskTitle={updateTaskTitle}
+        deleteTask={deleteTask}
+        selectedItem={selectedItem}
+        selectTask={selectTask}
+        addTask={addTask}
+        todolistId={todolistId}
+        items={items}
+        totalCount={totalCount}
+        currentPage={currentPage}
+      />
+    ) : (
+      <Redirect to="/login" />);
 };
 
 export default withRouter(TasksContainer);

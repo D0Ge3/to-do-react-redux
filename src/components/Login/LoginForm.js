@@ -1,18 +1,19 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { renderCheckbox, renderTextField } from '../common/FormsControls';
-import s from './Login.module.css';
+
 import { required } from '../../utils/validators/validators';
+
+import { renderCheckbox, renderTextField } from '../common';
 import { Button, Typography, CircularProgress } from '@material-ui/core';
 import UpdateIcon from '@material-ui/icons/Update';
+
+import s from './Login.module.css';
 
 let LoginForm = ({ handleSubmit, error, isFetchingLogin, captchaUrl, getCaptcha }) => {
   return (
     <form className={s.loginForm} onSubmit={handleSubmit}>
       <Typography variant="h4">Login</Typography>
-      {/* Не совсем понятно, зачем оборачивать каждое поле в див */}
-      <div>
-        <Field
+      <Field
           disabled={isFetchingLogin}
           className={s.loginInput}
           name={'email'}
@@ -20,9 +21,7 @@ let LoginForm = ({ handleSubmit, error, isFetchingLogin, captchaUrl, getCaptcha 
           component={renderTextField}
           validate={[required]}
         />
-      </div>
-      <div>
-        <Field
+      <Field
           disabled={isFetchingLogin}
           className={s.loginInput}
           type={'password'}
@@ -30,16 +29,13 @@ let LoginForm = ({ handleSubmit, error, isFetchingLogin, captchaUrl, getCaptcha 
           placeholder="password"
           component={renderTextField}
           validate={[required]}
-        />
-      </div>
-      <div>
-        <Field
+        />  
+      <Field
           color="primary"
           label={'remember me'}
           name={'rememberMe'}
           component={renderCheckbox}
         />
-      </div>
       {error && <span className={s.error}>{error}</span>}
       {captchaUrl && (
         <div className={s.captchaForm}>

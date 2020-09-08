@@ -1,7 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import MomentUtils from '@date-io/moment';
+import { BrowserRouter } from 'react-router-dom';
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+
+import store from './redux/reduxStore';
+
+import App from './App';
+
 import './index.css';
-import MainApp from './App';
+
+const MainApp = () => {
+  return (
+    <BrowserRouter>
+      <Provider store={store}>
+        <MuiPickersUtilsProvider utils={MomentUtils}>
+          <App />
+        </MuiPickersUtilsProvider>
+      </Provider>
+    </BrowserRouter>
+  );
+};
 
 ReactDOM.render(
   <React.StrictMode>
@@ -9,5 +29,3 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
-
-/* В теории можно подключить линтер eslint, настроить его, чтобы он сам форматировал код. Юзается буквально везде, полезно знать) */

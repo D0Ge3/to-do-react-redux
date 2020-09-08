@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+
+import { setError } from '../../redux/appReducer';
+
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
-import { useDispatch } from 'react-redux';
-import { setError } from '../../redux/appReducer';
 
 export const Alert = (props) => {
   const dispatch = useDispatch();
@@ -28,5 +30,3 @@ export const Alert = (props) => {
     </Snackbar>
   );
 };
-// Я бы не юзал дефолтные экспорты, так как сложнее искать компоненты и это позволяет уменьшить кол-во импортов вверху файла
-export default Alert;

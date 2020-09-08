@@ -1,14 +1,20 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+
+import { logout } from '../../redux/authReducer';
+
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import AppBar from '@material-ui/core/AppBar';
-import { NavLink } from 'react-router-dom';
-import s from './Header.module.css';
-import { connect } from 'react-redux';
-import { logout } from '../../redux/authReducer';
 
-const Header = ({ isAuth, logout }) => {
+import s from './Header.module.css';
+
+const Header = () => {
+  const isAuth = useSelector((state) => state.auth.isAuth);
+  const dispatch = useDispatch();
+
   return (
     <AppBar position="static" className={s.header}>
       <Toolbar className={s.bar}>
@@ -25,7 +31,7 @@ const Header = ({ isAuth, logout }) => {
           </Button>
         )}
         {isAuth && (
-          <Button onClick={logout} color="inherit">
+          <Button onClick={() => dispatch(logout())} color="inherit">
             Logout
           </Button>
         )}
@@ -33,10 +39,5 @@ const Header = ({ isAuth, logout }) => {
     </AppBar>
   );
 };
-const mapStateToProps = (state) => {
-  return {
-    isAuth: state.auth.isAuth,
-  };
-};
-// Надо бы переехать на хуки useSelector и useReducer, чтобы не городить такой массивной логики
-export default connect(mapStateToProps, { logout })(Header);
+
+export default Header;

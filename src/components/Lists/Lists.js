@@ -1,12 +1,14 @@
 import React from 'react';
-import s from './ListLists.module.css';
+
 import { Container, Typography } from '@material-ui/core';
 import List from '@material-ui/core/List';
 import ListListItem from './ListListItem/ListListItem';
-import Preloader from '../common/Preloader';
+import { Preloader } from '../common';
 import ListAddForm from './ListAddForm';
 
-const ListLists = ({ lists, addToDoList, deleteToDoList, updateToDoListTitle, isFetching }) => {
+import s from './ListLists.module.css';
+
+const Lists = ({ lists, addToDoList, deleteToDoList, updateToDoListTitle, isFetching }) => {
   // А что мешает перенести логику с удалением и обновлением в сам ListItem ?
   let toDos = lists.map((l) => (
     <ListListItem
@@ -36,4 +38,4 @@ const ListLists = ({ lists, addToDoList, deleteToDoList, updateToDoListTitle, is
   );
 };
 
-export default ListLists;
+export default Lists;
