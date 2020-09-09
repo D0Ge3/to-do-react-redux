@@ -1,5 +1,11 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { withRouter } from 'react-router-dom'
+
+import {
+  deleteToDoList,
+  updateToDoListTitle,
+} from '../../../redux/toDoListsReducer'
 
 import ListItemText from '@material-ui/core/ListItemText'
 import ListItem from '@material-ui/core/ListItem'
@@ -8,16 +14,18 @@ import { TextField } from '@material-ui/core'
 
 import s from './ListListItem.module.css'
 
-const ListListItem = ({ list, deleteToDoList, updateToDoListTitle, history }) => {
-  // Подключи здесь стор и обновляй его) Избавишься от двух уровней пробрасывания пропсов
+const ListListItem = ({ list, history }) => {
+  const dispatch = useDispatch()
   let [editMode, setEditMode] = useState(false)
   let [newTitle, setNewTitle] = useState(list.title)
-  const saveItemTitle = () => {
-    updateToDoListTitle(list.id, newTitle)
-    setEditMode(false)
-  }
 
   const onChangeTitle = (e) => setNewTitle(e.target.value)
+  const updateTitle = (todolistId, title) => dispatch(updateToDoListTitle(todolistId, title))
+  const deleteList = (todolistId) => dispatch(deleteToDoList(todolistId))
+  const saveItemTitle = () => {
+    updateTitle(list.id, newTitle)
+    setEditMode(false)
+  }
 
   return (
     <ListItem button>
@@ -36,7 +44,10 @@ const ListListItem = ({ list, deleteToDoList, updateToDoListTitle, history }) =>
         )}
       </ListItemText>
       <EditOutlined onClick={() => setEditMode(true)} />
-      <DeleteOutline onClick={() => deleteToDoList(list.id)} className={s.deleteBtn} />
+      <DeleteOutline
+        onClick={() => deleteList(list.id)}
+        className={s.deleteBtn}
+      />
     </ListItem>
   )
 }

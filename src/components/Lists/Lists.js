@@ -8,16 +8,8 @@ import ListAddForm from './ListAddForm'
 
 import s from './ListLists.module.css'
 
-const Lists = ({ lists, addToDoList, deleteToDoList, updateToDoListTitle, isFetching }) => {
-  // А что мешает перенести логику с удалением и обновлением в сам ListItem ?
-  let toDos = lists.map((l) => (
-    <ListListItem
-      key={l.id}
-      list={l}
-      deleteToDoList={deleteToDoList}
-      updateToDoListTitle={updateToDoListTitle}
-    />
-  ))
+const Lists = ({ lists, addToDoList, isFetching }) => {
+  let listItems = lists.map((l) => <ListListItem key={l.id} list={l} />)
 
   return (
     <Container>
@@ -29,7 +21,7 @@ const Lists = ({ lists, addToDoList, deleteToDoList, updateToDoListTitle, isFetc
             <Preloader size="40px" isCenter={true} />
           ) : (
             <List component="nav" aria-label="main mailbox folders">
-              {toDos}
+              {listItems}
             </List>
           )}
         </div>
