@@ -1,4 +1,4 @@
-import {authAPI, securityAPI} from '../api/api'
+import {authAPI, securityAPI} from '../api'
 import { stopSubmit } from 'redux-form'
 import { catchNetworkError } from './helpers/catchNetworkError'
 

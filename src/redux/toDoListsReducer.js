@@ -1,4 +1,4 @@
-import {todoListsAPI} from '../api/api'
+import { todoListsAPI } from '../api'
 import { catchNetworkError } from './helpers/catchNetworkError'
 
 const SET_TODO_LISTS = 'toDoLists/SET_TODO_LISTS'

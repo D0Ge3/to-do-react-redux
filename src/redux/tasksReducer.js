@@ -1,4 +1,4 @@
-import { tasksAPI } from '../api/api'
+import { tasksAPI } from '../api'
 import { catchNetworkError } from './helpers/catchNetworkError'
 
 const SET_TASKS = 'tasks/SET_TASKS'
