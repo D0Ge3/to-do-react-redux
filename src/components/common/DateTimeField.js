@@ -1,6 +1,6 @@
-import React from 'react';
+import React from 'react'
 
-import { KeyboardDateTimePicker } from '@material-ui/pickers';
+import { KeyboardDateTimePicker } from '@material-ui/pickers'
 
 export const DateTimeField = (props) => {
   const {
@@ -8,11 +8,11 @@ export const DateTimeField = (props) => {
     meta: { submitting, error, touched },
     input: { onBlur, value, ...inputProps },
     ...others
-  } = props;
+  } = props
 
   const onChange = (date) => {
-    date ? inputProps.onChange(date.format('YYYY-MM-DDTHH:mm:ss')) : inputProps.onChange(null);
-  };
+    date ? inputProps.onChange(date.format('YYYY-MM-DDTHH:mm:ss')) : inputProps.onChange(null)
+  }
 
   return (
     <KeyboardDateTimePicker
@@ -25,5 +25,5 @@ export const DateTimeField = (props) => {
       error={error && touched}
       onChange={onChange}
     />
-  );
-};
+  )
+}

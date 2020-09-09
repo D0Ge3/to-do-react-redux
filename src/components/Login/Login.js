@@ -1,21 +1,21 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 
-import { login, getCaptcha } from '../../redux/authReducer';
+import { login, getCaptcha } from '../../redux/authReducer'
 
-import { Container } from '@material-ui/core';
-import LoginForm from './LoginForm';
+import { Container } from '@material-ui/core'
+import LoginForm from './LoginForm'
 
 const Login = () => {
-  const isAuth = useSelector((state) => state.auth.isAuth);
-  const isFetchingLogin = useSelector((state) => state.auth.isFetchingLogin);
-  const captchaUrl = useSelector((state) => state.auth.captchaUrl);
-  const dispatch = useDispatch();
+  const isAuth = useSelector((state) => state.auth.isAuth)
+  const isFetchingLogin = useSelector((state) => state.auth.isFetchingLogin)
+  const captchaUrl = useSelector((state) => state.auth.captchaUrl)
+  const dispatch = useDispatch()
   const onSubmit = (formData) => {
-    const { email, password, rememberMe, captcha } = formData;
-    dispatch(login(email, password, rememberMe, captcha));
-  };
+    const { email, password, rememberMe, captcha } = formData
+    dispatch(login(email, password, rememberMe, captcha))
+  }
 
   return isAuth ? (
       <Redirect to="/todo" />
@@ -28,6 +28,6 @@ const Login = () => {
           onSubmit={onSubmit}
         />
       </Container>)
-};
+}
 
-export default Login;
+export default Login

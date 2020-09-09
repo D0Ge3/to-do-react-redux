@@ -1,9 +1,9 @@
-import React from 'react';
+import React from 'react'
 
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import Select from '@material-ui/core/Select';
-import { renderFromHelper } from './renderFromHelper';
+import FormControl from '@material-ui/core/FormControl'
+import InputLabel from '@material-ui/core/InputLabel'
+import Select from '@material-ui/core/Select'
+import { renderFromHelper } from './renderFromHelper'
 
 export const renderSelectField = ({
   input,
@@ -27,4 +27,4 @@ export const renderSelectField = ({
     </Select>
     {renderFromHelper({ touched, error })}
   </FormControl>
-);
+)

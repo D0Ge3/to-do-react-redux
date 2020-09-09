@@ -1,8 +1,8 @@
-import {todoListsAPI} from "../api/api";
-import { catchNetworkError } from './helpers/catchNetworkError';
+import {todoListsAPI} from '../api/api'
+import { catchNetworkError } from './helpers/catchNetworkError'
 
-const SET_TODO_LISTS = "toDoLists/SET_TODO_LISTS";
-const TOGGLE_IS_FETCHING = "toDoLists/TOGGLE_IS_FETCHING";
+const SET_TODO_LISTS = 'toDoLists/SET_TODO_LISTS'
+const TOGGLE_IS_FETCHING = 'toDoLists/TOGGLE_IS_FETCHING'
 
 const initialState = {
     lists: [],
@@ -12,24 +12,24 @@ const initialState = {
 const toDoListsReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_TODO_LISTS:
-            return {...state, lists: action.lists};
+            return {...state, lists: action.lists}
         case TOGGLE_IS_FETCHING:
-            return {...state, isFetching: !state.isFetching};
+            return {...state, isFetching: !state.isFetching}
         default:
             return state
     }
 }
 
-export const setToDoLists = (lists) => ({type: SET_TODO_LISTS, lists});
-export const toggleIsFetchingLists = () => ({type: TOGGLE_IS_FETCHING});
+export const setToDoLists = (lists) => ({type: SET_TODO_LISTS, lists})
+export const toggleIsFetchingLists = () => ({type: TOGGLE_IS_FETCHING})
 
 export const getToDoLists = () => async (dispatch) => {
     try {
-        dispatch(toggleIsFetchingLists());
-        const res = await todoListsAPI.todoLists();
+        dispatch(toggleIsFetchingLists())
+        const res = await todoListsAPI.todoLists()
         if (res.status === 200) {
-            dispatch(setToDoLists(res.data));
-            dispatch(toggleIsFetchingLists());
+            dispatch(setToDoLists(res.data))
+            dispatch(toggleIsFetchingLists())
         }
     } catch (error) {
         catchNetworkError(error, dispatch, () => dispatch(toggleIsFetchingLists()))
@@ -39,9 +39,9 @@ export const getToDoLists = () => async (dispatch) => {
 
 export const addNewToDoList = (title) => async (dispatch) => {
     try {
-        const res = await todoListsAPI.addNewList(title);
+        const res = await todoListsAPI.addNewList(title)
         if (res.data.resultCode === 0) {
-            dispatch(getToDoLists());
+            dispatch(getToDoLists())
         }
     } catch (error) {
         catchNetworkError(error, dispatch)
@@ -51,9 +51,9 @@ export const addNewToDoList = (title) => async (dispatch) => {
 
 export const deleteToDoList = (todolistId) => async (dispatch) => {
     try {
-        const res = await todoListsAPI.deleteList(todolistId);
+        const res = await todoListsAPI.deleteList(todolistId)
         if (res.data.resultCode === 0) {
-            dispatch(getToDoLists());
+            dispatch(getToDoLists())
         }
     } catch (error) {
         catchNetworkError(error, dispatch)
@@ -63,13 +63,13 @@ export const deleteToDoList = (todolistId) => async (dispatch) => {
 
 export const updateToDoListTitle = (todolistId, title) => async (dispatch) => {
     try {
-        const res = await todoListsAPI.updateListTitle(todolistId, title);
+        const res = await todoListsAPI.updateListTitle(todolistId, title)
         if (res.data.resultCode === 0) {
-            dispatch(getToDoLists());
+            dispatch(getToDoLists())
         }
     } catch (error) {
         catchNetworkError(error, dispatch)
     }
 }
 
-export default toDoListsReducer;
+export default toDoListsReducer

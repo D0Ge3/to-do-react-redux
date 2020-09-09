@@ -1,13 +1,13 @@
-import React from 'react';
-import { Field, reduxForm } from 'redux-form';
+import React from 'react'
+import { Field, reduxForm } from 'redux-form'
 
-import { required } from '../../utils/validators/validators';
+import { required } from '../../utils/validators/validators'
 
-import { renderCheckbox, renderTextField } from '../common';
-import { Button, Typography, CircularProgress } from '@material-ui/core';
-import UpdateIcon from '@material-ui/icons/Update';
+import { renderCheckbox, renderTextField } from '../common'
+import { Button, Typography, CircularProgress } from '@material-ui/core'
+import UpdateIcon from '@material-ui/icons/Update'
 
-import s from './Login.module.css';
+import s from './Login.module.css'
 
 let LoginForm = ({ handleSubmit, error, isFetchingLogin, captchaUrl, getCaptcha }) => {
   return (
@@ -62,11 +62,11 @@ let LoginForm = ({ handleSubmit, error, isFetchingLogin, captchaUrl, getCaptcha 
         {isFetchingLogin && <CircularProgress size={24} className={s.buttonProgress} />}
       </div>
     </form>
-  );
-};
+  )
+}
 
 LoginForm = reduxForm({
   form: 'login',
-})(LoginForm);
+})(LoginForm)
 
-export default LoginForm;
+export default LoginForm

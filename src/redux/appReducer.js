@@ -1,7 +1,7 @@
-import {getAuthUserData} from "./authReducer";
+import {getAuthUserData} from './authReducer'
 
-const SET_INITIALIZED = "app/SET_INITIALIZED";
-const SET_ERROR = "app/SET_ERROR";
+const SET_INITIALIZED = 'app/SET_INITIALIZED'
+const SET_ERROR = 'app/SET_ERROR'
 
 const initialState = {
     isInitialized: false,
@@ -27,8 +27,8 @@ export const setError = (error) => ({type: SET_ERROR, error})
 export const initializeApp = () => async (dispatch) => {
     dispatch(getAuthUserData())
         .then(() => {
-            dispatch(setInitialized());
+            dispatch(setInitialized())
         })
 
 }
-export default appReducer;
+export default appReducer

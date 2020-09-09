@@ -1,12 +1,12 @@
-import React from 'react';
+import React from 'react'
 
-import { Container, Typography } from '@material-ui/core';
-import List from '@material-ui/core/List';
-import ListListItem from './ListListItem/ListListItem';
-import { Preloader } from '../common';
-import ListAddForm from './ListAddForm';
+import { Container, Typography } from '@material-ui/core'
+import List from '@material-ui/core/List'
+import ListListItem from './ListListItem/ListListItem'
+import { Preloader } from '../common'
+import ListAddForm from './ListAddForm'
 
-import s from './ListLists.module.css';
+import s from './ListLists.module.css'
 
 const Lists = ({ lists, addToDoList, deleteToDoList, updateToDoListTitle, isFetching }) => {
   // А что мешает перенести логику с удалением и обновлением в сам ListItem ?
@@ -17,7 +17,7 @@ const Lists = ({ lists, addToDoList, deleteToDoList, updateToDoListTitle, isFetc
       deleteToDoList={deleteToDoList}
       updateToDoListTitle={updateToDoListTitle}
     />
-  ));
+  ))
 
   return (
     <Container>
@@ -35,7 +35,7 @@ const Lists = ({ lists, addToDoList, deleteToDoList, updateToDoListTitle, isFetc
         </div>
       </div>
     </Container>
-  );
-};
+  )
+}
 
-export default Lists;
+export default Lists

@@ -1,19 +1,19 @@
-import React, {useState} from "react";
+import React, {useState} from 'react'
 
-import Button from "@material-ui/core/Button";
-import List from "@material-ui/core/List";
-import TextField from '@material-ui/core/TextField';
-import Task from "./Task/Task";
-import { Preloader } from "../common";
+import Button from '@material-ui/core/Button'
+import List from '@material-ui/core/List'
+import TextField from '@material-ui/core/TextField'
+import Task from './Task/Task'
+import { Preloader } from '../common'
 
-import s from "./TaskList.module.css";
+import s from './TaskList.module.css'
 
 const AddTaskForm = ({todolistId, addTask}) => {
-	let [task, setTask] = useState("");
-	const onChangeTask = e => setTask(e.target.value);
+	let [task, setTask] = useState('')
+	const onChangeTask = e => setTask(e.target.value)
 	const onAddTask = () => {
-		addTask(todolistId, task);
-		setTask("");
+		addTask(todolistId, task)
+		setTask('')
 	}
 	
 	return (
@@ -37,7 +37,7 @@ const TaskList = ({items, todolistId, addTask, isFetching,
 		todolistId={todolistId}
 		deleteTask={deleteTask}
 		selectedItemId={selectedItemId}
-		selectTask={selectTask} />);
+		selectTask={selectTask} />)
 
 	return (
 		<>
@@ -56,4 +56,4 @@ const TaskList = ({items, todolistId, addTask, isFetching,
 	)
 }
 
-export default TaskList;
+export default TaskList

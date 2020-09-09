@@ -1,11 +1,11 @@
-import React from "react";
-import {Field, reduxForm} from "redux-form";
+import React from 'react'
+import {Field, reduxForm} from 'redux-form'
 
-import Button from "@material-ui/core/Button";
-import {CircularProgress } from "@material-ui/core";
-import {DateTimeField, renderTextField} from "../../../common";
+import Button from '@material-ui/core/Button'
+import {CircularProgress } from '@material-ui/core'
+import {DateTimeField, renderTextField} from '../../../common'
 
-import s from "./TaskDetails.module.css";
+import s from './TaskDetails.module.css'
 
 let EditTaskForm = ({initialValues, handleSubmit, submitting}) => {
 	return (
@@ -71,4 +71,4 @@ EditTaskForm = reduxForm({
 	enableReinitialize: true
 })(EditTaskForm)
 
-export default EditTaskForm;
+export default EditTaskForm

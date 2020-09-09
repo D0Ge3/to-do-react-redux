@@ -1,19 +1,19 @@
-import React, {useState} from "react";
+import React, {useState} from 'react'
 
-import Typography from "@material-ui/core/Typography";
-import EditTaskForm from './EditTaskForm';
-import EditTitleForm from './EditTitleForm';
+import Typography from '@material-ui/core/Typography'
+import EditTaskForm from './EditTaskForm'
+import EditTitleForm from './EditTitleForm'
 
-import s from "./TaskDetails.module.css";
+import s from './TaskDetails.module.css'
 
 const TaskDetails = ({selectedItem, updateTask, resetForm, updateTaskTitle, todolistId}) => {
-	let [editTitleMode, setEditTitleMode] = useState(false);
+	let [editTitleMode, setEditTitleMode] = useState(false)
 
-	const onSaveTask = (formData) => updateTask(formData);
-	const toggleEditTitleMode = () => setEditTitleMode(!editTitleMode);
+	const onSaveTask = (formData) => updateTask(formData)
+	const toggleEditTitleMode = () => setEditTitleMode(!editTitleMode)
 	const saveNewTitle = (newTitle) => {
-		updateTaskTitle(todolistId, selectedItem, newTitle);
-		toggleEditTitleMode();
+		updateTaskTitle(todolistId, selectedItem, newTitle)
+		toggleEditTitleMode()
 	}
 
 	return selectedItem.id ? (
@@ -36,4 +36,4 @@ const TaskDetails = ({selectedItem, updateTask, resetForm, updateTaskTitle, todo
 	)
 }
 
-export default TaskDetails;
+export default TaskDetails

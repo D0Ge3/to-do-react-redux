@@ -1,21 +1,21 @@
-import React, {useState} from "react";
+import React, {useState} from 'react'
 
-import { TextField } from "@material-ui/core";
+import { TextField } from '@material-ui/core'
 
-import s from "./TaskDetails.module.css";
+import s from './TaskDetails.module.css'
 
 const EditTitleForm = ({taskTitle, saveNewTitle}) => {
-	let [title, setTitle] = useState(taskTitle);
-	const onChangeTitle = (e) => setTitle(e.target.value);
+	let [title, setTitle] = useState(taskTitle)
+	const onChangeTitle = (e) => setTitle(e.target.value)
 	const onSaveTitle = () => {
-		saveNewTitle(title);
+		saveNewTitle(title)
 	}
 
 	return (
 		<div className={s.taskTitle}>
 			<TextField 
 				onChange={onChangeTitle}
-				inputProps={{style: {fontSize: "25px", fontWeight: "bolder"}}}
+				inputProps={{style: {fontSize: '25px', fontWeight: 'bolder'}}}
 				value={title} 
 				onBlur={onSaveTitle} 
 				autoFocus size="medium" 
@@ -24,4 +24,4 @@ const EditTitleForm = ({taskTitle, saveNewTitle}) => {
 	)
 }
 
-export default EditTitleForm;
+export default EditTitleForm

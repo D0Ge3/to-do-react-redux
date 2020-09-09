@@ -1,15 +1,15 @@
-import React, {useEffect} from "react";
+import React, {useEffect} from 'react'
 
-import {Container} from "@material-ui/core";
-import Grid from "@material-ui/core/Grid";
-import { Pagination } from '@material-ui/lab';
-import TaskDetails from "./Task/TaskDetails/TaskDetails";
-import TaskList from "./TaskList";
+import {Container} from '@material-ui/core'
+import Grid from '@material-ui/core/Grid'
+import { Pagination } from '@material-ui/lab'
+import TaskDetails from './Task/TaskDetails/TaskDetails'
+import TaskList from './TaskList'
 
 const Tasks = ({items, totalCount, currentPage, pageSize, changePage, todolistId, 
 	addTask, updateTask, isFetching, selectTask, selectedItem, deleteTask, updateTaskTitle}) => {
 		
-  useEffect(() => () => selectTask(null), []);
+  useEffect(() => () => selectTask(null), [])
 
   return (
     <Container>
@@ -42,4 +42,4 @@ const Tasks = ({items, totalCount, currentPage, pageSize, changePage, todolistId
 	)
 }
 
-export default Tasks;
+export default Tasks
