@@ -11,7 +11,9 @@ export const DateTimeField = (props) => {
   } = props
 
   const onChange = (date) => {
-    date ? inputProps.onChange(date.format('YYYY-MM-DDTHH:mm:ss')) : inputProps.onChange(null)
+    date
+      ? inputProps.onChange(date.format('YYYY-MM-DDTHH:mm:ss'))
+      : inputProps.onChange(null)
   }
 
   return (

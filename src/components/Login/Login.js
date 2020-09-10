@@ -18,16 +18,17 @@ const Login = () => {
   }
 
   return isAuth ? (
-      <Redirect to="/todo" />
-    ) : (
-      <Container>
-        <LoginForm
-          getCaptcha={() => dispatch(getCaptcha())}
-          captchaUrl={captchaUrl}
-          isFetchingLogin={isFetchingLogin}
-          onSubmit={onSubmit}
-        />
-      </Container>)
+    <Redirect to="/todo" />
+  ) : (
+    <Container>
+      <LoginForm
+        getCaptcha={() => dispatch(getCaptcha())}
+        captchaUrl={captchaUrl}
+        isFetchingLogin={isFetchingLogin}
+        onSubmit={onSubmit}
+      />
+    </Container>
+  )
 }
 
 export default Login

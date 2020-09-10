@@ -44,7 +44,9 @@ const tasksReducer = (state = initialState, action) => {
     case ADD_TASK:
       return { ...state, items: [action.task, ...state.items] }
     case SELECT_TASK:
-      let selectedItem = action.taskId ? state.items.find((item) => item.id === action.taskId) : {}
+      let selectedItem = action.taskId
+        ? state.items.find((item) => item.id === action.taskId)
+        : {}
       return { ...state, selectedItem }
     case DELETE_TASK:
       return {
@@ -56,7 +58,10 @@ const tasksReducer = (state = initialState, action) => {
       return {
         ...state,
         items: state.items.map((item) => (item.id === action.task.id ? action.task : item)),
-        selectedItem: action.task.id === state.selectedItem.id ? action.task : state.selectedItem,
+        selectedItem:
+          action.task.id === state.selectedItem.id
+            ? action.task
+            : state.selectedItem,
       }
     case TOGGLE_IS_FETCHING:
       return { ...state, isFetching: !state.isFetching }
