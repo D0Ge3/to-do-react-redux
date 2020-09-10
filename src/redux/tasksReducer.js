@@ -111,10 +111,12 @@ export const deleteTaskThunk = (todolistId, taskId) => async (dispatch, getState
     if (res.data.resultCode === 0) {
       dispatch(unselectTaskAC(taskId))
       let { pageSize, currentPage, totalCount } = getState().tasks
-      if (Number.isInteger((totalCount - 1) / pageSize) && totalCount > pageSize) {
-        if (currentPage > 1) {
-          currentPage = currentPage - 1
-        }
+      if (
+        currentPage > 1 &&
+        Number.isInteger((totalCount - 1) / pageSize) &&
+        totalCount > pageSize
+      ) {
+        currentPage = currentPage - 1
       }
       dispatch(getTasksThunk(todolistId, pageSize, currentPage))
     }
