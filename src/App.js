@@ -5,10 +5,10 @@ import { useSelector, useDispatch } from 'react-redux'
 import { initializeApp } from './redux/appReducer'
 
 import Login from './components/Login/Login'
-import ListsContainer from './components/Lists/ListsContainer'
+import Lists from './components/Lists/Lists'
 import { Preloader } from './components/common'
 import Header from './components/Header/Header'
-import TasksContainer from './components/Tasks/TasksContainer'
+import Tasks from './components/Tasks/Tasks'
 import { Alert } from './components/common'
 
 import './App.css'
@@ -33,10 +33,10 @@ const App = () => {
             <Login />
           </Route>
           <Route path={'/todo/:listId'}>
-            <TasksContainer />
+            <Tasks />
           </Route>
           <Route path={'/todo'}>
-            <ListsContainer />
+            <Lists />
           </Route>
           <Redirect from="/" to="/todo" />
         </Switch>
@@ -44,6 +44,5 @@ const App = () => {
     </>
   )
 }
-
 
 export default App

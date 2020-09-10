@@ -1,44 +1,64 @@
-import React, {useEffect} from 'react'
+import React, { useEffect }from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { Redirect, useParams } from 'react-router-dom'
 
-import {Container} from '@material-ui/core'
+import {
+	setCurrentPage,
+	selectTaskAC,
+	getTasksThunk,
+} from '../../redux/tasksReducer'
+
+import { Container } from '@material-ui/core'
 import Grid from '@material-ui/core/Grid'
 import { Pagination } from '@material-ui/lab'
 import TaskDetails from './Task/TaskDetails/TaskDetails'
 import TaskList from './TaskList'
 
-const Tasks = ({items, totalCount, currentPage, pageSize, changePage, todolistId, 
-	addTask, updateTask, isFetching, selectTask, selectedItem, deleteTask, updateTaskTitle}) => {
-		
-  useEffect(() => () => selectTask(null), [])
+const Tasks = () => {
+	const dispatch = useDispatch()
 
-  return (
-    <Container>
-      <Grid container spacing={4}>
+	const { listId } = useParams()
+	const items = useSelector((state) => state.tasks.items)
+	const totalCount = useSelector((state) => state.tasks.totalCount)
+	const currentPage = useSelector((state) => state.tasks.currentPage)
+	const pageSize = useSelector((state) => state.tasks.pageSize)
+	const selectedItem = useSelector((state) => state.tasks.selectedItem)
+	const isFetching = useSelector((state) => state.tasks.isFetching)
+	const isAuth = useSelector((state) => state.auth.isAuth)
+
+	const selectTask = (taskId) => dispatch(selectTaskAC(taskId))
+	const changePage = (object, page) => dispatch(setCurrentPage(page))
+
+	useEffect(() => {
+		selectTask(null)
+		dispatch(getTasksThunk(listId, pageSize, currentPage))
+	}, [listId, currentPage])
+
+	return isAuth ? (
+		<Container>
+			<Grid container spacing={4}>
 				<Grid item xs={12} md={6}>
 					<TaskList
 						isFetching={isFetching}
-						updateTaskTitle={updateTaskTitle}
-						deleteTask={deleteTask}
 						selectedItemId={selectedItem.id}
-						selectTask={selectTask}
 						items={items}
-						todolistId={todolistId}
-						addTask={addTask}
+						listId={listId}
 					/>
 					{totalCount > pageSize && (
-						<Pagination onChange={changePage} page={currentPage} count={Math.ceil(totalCount/pageSize)} />
+						<Pagination
+							onChange={changePage}
+							page={currentPage}
+							count={Math.ceil(totalCount / pageSize)}
+						/>
 					)}
 				</Grid>
 				<Grid item xs={12} md={6}>
-					<TaskDetails
-						todolistId={todolistId}
-						updateTaskTitle={updateTaskTitle}
-						updateTask={updateTask}
-						selectedItem={selectedItem}
-					/>
+					<TaskDetails listId={listId} selectedItem={selectedItem} />
 				</Grid>
-      </Grid>
-    </Container>
+			</Grid>
+		</Container>
+	) : (
+		<Redirect to="/login" />
 	)
 }
 

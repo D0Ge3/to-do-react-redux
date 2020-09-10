@@ -1,4 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { Redirect } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+
+import { addNewToDoList, getToDoLists } from '../../redux/toDoListsReducer'
 
 import { Container, Typography } from '@material-ui/core'
 import List from '@material-ui/core/List'
@@ -8,10 +12,22 @@ import ListAddForm from './ListAddForm'
 
 import s from './ListLists.module.css'
 
-const Lists = ({ lists, addToDoList, isFetching }) => {
+const Lists = () => {
+  const dispatch = useDispatch()
+  const isAuth = useSelector((state) => state.auth.isAuth)
+  const lists = useSelector((state) => state.toDoLists.lists)
+  const isFetching = useSelector((state) => state.toDoLists.isFetching)
+  const addToDoList = (title) => dispatch(addNewToDoList(title))
+
+  useEffect(() => {
+    if (isAuth) {
+      dispatch(getToDoLists())
+    }
+  }, [])
+
   let listItems = lists.map((l) => <ListListItem key={l.id} list={l} />)
 
-  return (
+  return isAuth ? (
     <Container>
       <div className={s.todoListsWrapper}>
         <Typography variant="h4">ToDos</Typography>
@@ -27,6 +43,8 @@ const Lists = ({ lists, addToDoList, isFetching }) => {
         </div>
       </div>
     </Container>
+  ) : (
+    <Redirect to="/login" />
   )
 }
 
