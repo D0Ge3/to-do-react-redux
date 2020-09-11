@@ -2,6 +2,14 @@
 
 ToDo
 
+#### Important
+
+App need a api key in .env file in project's root
+
+##### .env example
+
+REACT_APP_API_KEY=YOUR-KEY
+
 ## Stack
 
 - React
