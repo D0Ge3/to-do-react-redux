@@ -8,8 +8,7 @@ import {
   getTasksThunk,
 } from '../../redux/actions/tasksActions'
 
-import { Container } from '@material-ui/core'
-import Grid from '@material-ui/core/Grid'
+import { Container, Grid } from '@material-ui/core'
 import { Pagination } from '@material-ui/lab'
 import TaskDetails from './Task/TaskDetails/TaskDetails'
 import TaskList from './TaskList'

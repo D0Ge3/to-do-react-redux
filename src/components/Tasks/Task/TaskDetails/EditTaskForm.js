@@ -1,8 +1,7 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 
-import Button from '@material-ui/core/Button'
-import { CircularProgress } from '@material-ui/core'
+import { CircularProgress, Button } from '@material-ui/core'
 import { DateTimeField, renderTextField } from '../../../common'
 
 import s from './TaskDetails.module.css'

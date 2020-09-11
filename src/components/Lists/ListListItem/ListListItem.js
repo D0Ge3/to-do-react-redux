@@ -7,10 +7,8 @@ import {
   updateToDoListTitle,
 } from '../../../redux/actions/toDoListsActions'
 
-import ListItemText from '@material-ui/core/ListItemText'
-import ListItem from '@material-ui/core/ListItem'
+import { ListItemText, ListItem, TextField } from '@material-ui/core'
 import { DeleteOutline, EditOutlined } from '@material-ui/icons'
-import { TextField } from '@material-ui/core'
 
 import s from './ListListItem.module.css'
 

@@ -1,9 +1,11 @@
 import React from 'react'
 
-import FormControlLabel from '@material-ui/core/FormControlLabel'
-import FormControl from '@material-ui/core/FormControl'
-import RadioGroup from '@material-ui/core/RadioGroup'
-import Radio from '@material-ui/core/Radio'
+import {
+  FormControlLabel,
+  FormControl,
+  RadioGroup,
+  Radio,
+} from '@material-ui/core'
 
 export const radioButton = ({ input, ...rest }) => (
   <FormControl>

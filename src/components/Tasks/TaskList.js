@@ -3,9 +3,7 @@ import { useDispatch } from 'react-redux'
 
 import { addTaskThunk } from '../../redux/actions/tasksActions'
 
-import Button from '@material-ui/core/Button'
-import List from '@material-ui/core/List'
-import TextField from '@material-ui/core/TextField'
+import { Button, List, TextField } from '@material-ui/core'
 import Task from './Task/Task'
 import { Preloader } from '../common'
 

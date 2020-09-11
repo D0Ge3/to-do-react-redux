@@ -4,8 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import { addNewToDoList, getToDoLists } from '../../redux/actions/toDoListsActions'
 
-import { Container, Typography } from '@material-ui/core'
-import List from '@material-ui/core/List'
+import { Container, Typography, List } from '@material-ui/core'
 import ListListItem from './ListListItem/ListListItem'
 import { Preloader } from '../common'
 import ListAddForm from './ListAddForm'

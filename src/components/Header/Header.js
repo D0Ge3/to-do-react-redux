@@ -3,11 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 
 import { logout } from '../../redux/actions/authActions'
-
-import Toolbar from '@material-ui/core/Toolbar'
-import Typography from '@material-ui/core/Typography'
-import Button from '@material-ui/core/Button'
-import AppBar from '@material-ui/core/AppBar'
+import { Toolbar, Typography, Button, AppBar } from '@material-ui/core'
 
 import s from './Header.module.css'
 

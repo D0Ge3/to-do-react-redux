@@ -7,10 +7,8 @@ import {
   selectTaskAC,
 } from '../../../redux/actions/tasksActions'
 
-import ListItemText from '@material-ui/core/ListItemText'
-import { TextField } from '@material-ui/core'
+import { TextField, ListItemText, ListItem } from '@material-ui/core'
 import { DeleteOutline } from '@material-ui/icons'
-import ListItem from '@material-ui/core/ListItem'
 
 import s from './Task.module.css'
 
