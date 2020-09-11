@@ -1,32 +1,52 @@
-import React, {useState} from "react";
-import Typography from "@material-ui/core/Typography";
-import s from "./TaskDetails.module.css";
-import EditTaskForm from './EditTaskForm';
-import EditTitleForm from './EditTitleForm';
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 
-const TaskDetails = ({selectedItem, updateTask, resetForm, updateTaskTitle, todolistId}) => {
+import {
+  updateTaskTitleThunk,
+  updateTaskThunk,
+} from '../../../../redux/actions/tasksActions'
 
-    const onSaveTask = (formData) => updateTask(formData);
-    let [editTitleMode, setEditTitleMode] = useState(false);
+import Typography from '@material-ui/core/Typography'
+import { EditTaskForm } from './EditTaskForm'
+import { EditTitleForm } from './EditTitleForm'
 
-    const toggleEditTitleMode = () => setEditTitleMode(!editTitleMode);
+import s from './TaskDetails.module.css'
 
-    const saveNewTitle = (newTitle) => {
-        updateTaskTitle(todolistId, selectedItem, newTitle);
-        toggleEditTitleMode();
-    }
+export const TaskDetails = ({ selectedItem, resetForm, listId }) => {
+  const dispatch = useDispatch()
+  let [editTitleMode, setEditTitleMode] = useState(false)
 
-    if (selectedItem.id) {
-    return (
-        <>
-            {editTitleMode 
-            ? <EditTitleForm saveNewTitle={saveNewTitle} taskTitle={selectedItem.title} /> 
-            : <div className={s.taskTitle}><span onClick={toggleEditTitleMode}>{selectedItem.title}</span></div>}
-            <EditTaskForm resetForm={resetForm} initialValues={selectedItem} onSubmit={onSaveTask} />
-        </>
-    )
-    }
-    return <><Typography color="textSecondary" variant="h6">Select a task!</Typography></>
+  const updateTask = (taskData) => dispatch(updateTaskThunk(taskData))
+  const onSaveTask = (formData) => updateTask(formData)
+  const toggleEditTitleMode = () => setEditTitleMode(!editTitleMode)
+  const saveNewTitle = (newTitle) => {
+    updateTaskTitle(listId, selectedItem, newTitle)
+    toggleEditTitleMode()
+  }
+  const updateTaskTitle = (listId, task, newTitle) =>
+    dispatch(updateTaskTitleThunk(listId, task, newTitle))
+
+  return selectedItem.id ? (
+    <>
+      {editTitleMode ? (
+        <EditTitleForm
+          saveNewTitle={saveNewTitle}
+          taskTitle={selectedItem.title}
+        />
+      ) : (
+        <div className={s.taskTitle}>
+          <span onClick={toggleEditTitleMode}>{selectedItem.title}</span>
+        </div>
+      )}
+      <EditTaskForm
+        resetForm={resetForm}
+        initialValues={selectedItem}
+        onSubmit={onSaveTask}
+      />
+    </>
+  ) : (
+    <Typography color="textSecondary" variant="h6">
+      Select a task!
+    </Typography>
+  )
 }
-
-export default TaskDetails;
