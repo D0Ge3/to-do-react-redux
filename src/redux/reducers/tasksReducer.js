@@ -9,7 +9,7 @@ const initialState = {
   pageSize: 10,
 }
 
-const tasksReducer = (state = initialState, action) => {
+export const tasksReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.SET_TASKS:
       return { ...state, items: action.tasks }
@@ -47,5 +47,3 @@ const tasksReducer = (state = initialState, action) => {
       return state
   }
 }
-
-export default tasksReducer

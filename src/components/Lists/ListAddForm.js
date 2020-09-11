@@ -4,7 +4,7 @@ import { TextField, Button } from '@material-ui/core'
 
 import s from './ListLists.module.css'
 
-const ListAddForm = ({ addToDoList }) => {
+export const ListAddForm = ({ addToDoList }) => {
   let [addMode, setAddMode] = useState(false)
   let [toDoListTitle, setToDoListTitle] = useState('')
 
@@ -39,5 +39,3 @@ const ListAddForm = ({ addToDoList }) => {
     </Button>
   )
 }
-
-export default ListAddForm

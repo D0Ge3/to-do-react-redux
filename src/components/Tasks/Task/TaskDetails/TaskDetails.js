@@ -7,12 +7,12 @@ import {
 } from '../../../../redux/actions/tasksActions'
 
 import Typography from '@material-ui/core/Typography'
-import EditTaskForm from './EditTaskForm'
-import EditTitleForm from './EditTitleForm'
+import { EditTaskForm } from './EditTaskForm'
+import { EditTitleForm } from './EditTitleForm'
 
 import s from './TaskDetails.module.css'
 
-const TaskDetails = ({ selectedItem, resetForm, listId }) => {
+export const TaskDetails = ({ selectedItem, resetForm, listId }) => {
   const dispatch = useDispatch()
   let [editTitleMode, setEditTitleMode] = useState(false)
 
@@ -50,5 +50,3 @@ const TaskDetails = ({ selectedItem, resetForm, listId }) => {
     </Typography>
   )
 }
-
-export default TaskDetails

@@ -10,10 +10,10 @@ import {
 
 import { Container, Grid } from '@material-ui/core'
 import { Pagination } from '@material-ui/lab'
-import TaskDetails from './Task/TaskDetails/TaskDetails'
-import TaskList from './TaskList'
+import { TaskDetails } from './Task/TaskDetails/TaskDetails'
+import { TaskList } from './TaskList'
 
-const Tasks = () => {
+export const Tasks = () => {
   const dispatch = useDispatch()
 
   const { listId } = useParams()
@@ -60,5 +60,3 @@ const Tasks = () => {
     <Redirect to="/login" />
   )
 }
-
-export default Tasks

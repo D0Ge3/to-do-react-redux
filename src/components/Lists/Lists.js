@@ -5,13 +5,13 @@ import { useSelector, useDispatch } from 'react-redux'
 import { addNewToDoList, getToDoLists } from '../../redux/actions/toDoListsActions'
 
 import { Container, Typography, List } from '@material-ui/core'
-import ListListItem from './ListListItem/ListListItem'
+import { ListListItem } from './ListListItem/ListListItem'
 import { Preloader } from '../common'
-import ListAddForm from './ListAddForm'
+import { ListAddForm } from './ListAddForm'
 
 import s from './ListLists.module.css'
 
-const Lists = () => {
+export const Lists = () => {
   const dispatch = useDispatch()
   const isAuth = useSelector((state) => state.auth.isAuth)
   const lists = useSelector((state) => state.toDoLists.lists)
@@ -46,5 +46,3 @@ const Lists = () => {
     <Redirect to="/login" />
   )
 }
-
-export default Lists

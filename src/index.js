@@ -5,9 +5,9 @@ import MomentUtils from '@date-io/moment'
 import { BrowserRouter } from 'react-router-dom'
 import { MuiPickersUtilsProvider } from '@material-ui/pickers'
 
-import store from './redux/store'
+import { store } from './redux/store'
 
-import App from './App'
+import { App } from './App'
 
 import './index.css'
 

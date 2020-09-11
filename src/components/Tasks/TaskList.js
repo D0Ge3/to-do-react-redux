@@ -4,13 +4,13 @@ import { useDispatch } from 'react-redux'
 import { addTaskThunk } from '../../redux/actions/tasksActions'
 
 import { List } from '@material-ui/core'
-import Task from './Task/Task'
+import { Task } from './Task/Task'
 import { Preloader } from '../common'
 import { AddTaskForm } from './AddTaskForm'
 
 import s from './TaskList.module.css'
 
-const TaskList = ({ items, listId, isFetching, selectedItemId }) => {
+export const TaskList = ({ items, listId, isFetching, selectedItemId }) => {
   const dispatch = useDispatch()
   const addTask = (listId, title) => dispatch(addTaskThunk(listId, title))
 
@@ -35,5 +35,3 @@ const TaskList = ({ items, listId, isFetching, selectedItemId }) => {
     </>
   )
 }
-
-export default TaskList

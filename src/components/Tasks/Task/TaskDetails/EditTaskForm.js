@@ -6,7 +6,7 @@ import { DateTimeField, renderTextField } from '../../../common'
 
 import s from './TaskDetails.module.css'
 
-let EditTaskForm = ({ initialValues, handleSubmit, submitting }) => {
+export let EditTaskForm = ({ initialValues, handleSubmit, submitting }) => {
   return (
     <form onSubmit={handleSubmit}>
       <div className={s.taskParam}>
@@ -71,5 +71,3 @@ EditTaskForm = reduxForm({
   form: 'task',
   enableReinitialize: true,
 })(EditTaskForm)
-
-export default EditTaskForm

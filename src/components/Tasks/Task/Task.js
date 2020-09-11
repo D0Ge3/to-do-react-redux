@@ -12,7 +12,7 @@ import { DeleteOutline } from '@material-ui/icons'
 
 import s from './Task.module.css'
 
-const Task = ({ task, selectedItemId, listId }) => {
+export const Task = ({ task, selectedItemId, listId }) => {
   let [editMode, setEditMode] = useState(false)
   let [newTitle, setNewTitle] = useState(task.title)
 
@@ -61,5 +61,3 @@ const Task = ({ task, selectedItemId, listId }) => {
     </ListItem>
   )
 }
-
-export default Task

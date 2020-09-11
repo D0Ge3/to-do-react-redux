@@ -7,7 +7,7 @@ import { Toolbar, Typography, Button, AppBar } from '@material-ui/core'
 
 import s from './Header.module.css'
 
-const Header = () => {
+export const Header = () => {
   const isAuth = useSelector((state) => state.auth.isAuth)
   const dispatch = useDispatch()
 
@@ -35,5 +35,3 @@ const Header = () => {
     </AppBar>
   )
 }
-
-export default Header

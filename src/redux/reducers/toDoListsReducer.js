@@ -5,7 +5,7 @@ const initialState = {
   isFetching: false,
 }
 
-const toDoListsReducer = (state = initialState, action) => {
+export const toDoListsReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.SET_TODO_LISTS:
       return { ...state, lists: action.lists }
@@ -15,5 +15,3 @@ const toDoListsReducer = (state = initialState, action) => {
       return state
   }
 }
-
-export default toDoListsReducer

@@ -11,7 +11,7 @@ const initialState = {
   captchaUrl: null,
 }
 
-const authReducer = (state = initialState, action) => {
+export const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.SET_USER_DATA:
       return { ...state, ...action.data }
@@ -23,5 +23,3 @@ const authReducer = (state = initialState, action) => {
       return state
   }
 }
-
-export default authReducer

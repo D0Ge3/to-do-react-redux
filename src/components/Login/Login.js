@@ -5,9 +5,9 @@ import { Redirect } from 'react-router-dom'
 import { login, getCaptcha } from '../../redux/actions/authActions'
 
 import { Container } from '@material-ui/core'
-import LoginForm from './LoginForm'
+import { LoginForm } from './LoginForm'
 
-const Login = () => {
+export const Login = () => {
   const isAuth = useSelector((state) => state.auth.isAuth)
   const isFetchingLogin = useSelector((state) => state.auth.isFetchingLogin)
   const captchaUrl = useSelector((state) => state.auth.captchaUrl)
@@ -30,5 +30,3 @@ const Login = () => {
     </Container>
   )
 }
-
-export default Login

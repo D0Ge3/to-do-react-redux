@@ -5,7 +5,7 @@ const initialState = {
   error: null,
 }
 
-const appReducer = (state = initialState, action) => {
+export const appReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.SET_INITIALIZED:
       return { ...state, isInitialized: true }
@@ -15,5 +15,3 @@ const appReducer = (state = initialState, action) => {
       return state
   }
 }
-
-export default appReducer

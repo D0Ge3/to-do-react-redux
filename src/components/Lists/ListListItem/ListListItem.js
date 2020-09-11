@@ -12,7 +12,7 @@ import { DeleteOutline, EditOutlined } from '@material-ui/icons'
 
 import s from './ListListItem.module.css'
 
-const ListListItem = ({ list }) => {
+export const ListListItem = ({ list }) => {
   let history = useHistory()
   const dispatch = useDispatch()
   let [editMode, setEditMode] = useState(false)
@@ -51,5 +51,3 @@ const ListListItem = ({ list }) => {
     </ListItem>
   )
 }
-
-export default ListListItem

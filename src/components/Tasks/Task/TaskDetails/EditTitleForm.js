@@ -4,7 +4,7 @@ import { TextField } from '@material-ui/core'
 
 import s from './TaskDetails.module.css'
 
-const EditTitleForm = ({ taskTitle, saveNewTitle }) => {
+export const EditTitleForm = ({ taskTitle, saveNewTitle }) => {
   let [title, setTitle] = useState(taskTitle)
   const onChangeTitle = (e) => setTitle(e.target.value)
   const onSaveTitle = () => {
@@ -24,5 +24,3 @@ const EditTitleForm = ({ taskTitle, saveNewTitle }) => {
     </div>
   )
 }
-
-export default EditTitleForm

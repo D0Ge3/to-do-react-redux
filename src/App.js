@@ -4,15 +4,15 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import { initializeApp } from './redux/actions/appActions'
 
-import Login from './components/Login/Login'
-import Lists from './components/Lists/Lists'
+import { Login } from './components/Login/Login'
+import { Lists } from './components/Lists/Lists'
 import { Preloader, Alert } from './components/common'
-import Header from './components/Header/Header'
-import Tasks from './components/Tasks/Tasks'
+import { Header } from './components/Header/Header'
+import { Tasks } from './components/Tasks/Tasks'
 
 import './App.css'
 
-const App = () => {
+export const App = () => {
   const dispatch = useDispatch()
   const isInitialized = useSelector((state) => state.app.isInitialized)
   const error = useSelector((state) => state.app.error)
@@ -43,5 +43,3 @@ const App = () => {
     </>
   )
 }
-
-export default App

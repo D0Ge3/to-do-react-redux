@@ -9,7 +9,7 @@ import UpdateIcon from '@material-ui/icons/Update'
 
 import s from './Login.module.css'
 
-let LoginForm = ({
+export let LoginForm = ({
   handleSubmit,
   error,
   isFetchingLogin,
@@ -76,5 +76,3 @@ let LoginForm = ({
 LoginForm = reduxForm({
   form: 'login',
 })(LoginForm)
-
-export default LoginForm
