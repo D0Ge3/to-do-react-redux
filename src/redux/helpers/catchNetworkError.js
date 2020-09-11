@@ -1,4 +1,4 @@
-import { setError } from '../appReducer'
+import { setError } from '../actions/appActions'
 
 export const catchNetworkError = (error, dispatch, side = () => {}) => {
   if (error.response) {

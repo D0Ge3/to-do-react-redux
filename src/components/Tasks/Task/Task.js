@@ -5,7 +5,7 @@ import {
   deleteTaskThunk,
   updateTaskTitleThunk,
   selectTaskAC,
-} from '../../../redux/tasksReducer'
+} from '../../../redux/actions/tasksActions'
 
 import ListItemText from '@material-ui/core/ListItemText'
 import { TextField } from '@material-ui/core'

@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import {
   updateTaskTitleThunk,
   updateTaskThunk,
-} from '../../../../redux/tasksReducer'
+} from '../../../../redux/actions/tasksActions'
 
 import Typography from '@material-ui/core/Typography'
 import EditTaskForm from './EditTaskForm'

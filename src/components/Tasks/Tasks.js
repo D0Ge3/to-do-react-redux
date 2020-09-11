@@ -6,7 +6,7 @@ import {
   setCurrentPage,
   selectTaskAC,
   getTasksThunk,
-} from '../../redux/tasksReducer'
+} from '../../redux/actions/tasksActions'
 
 import { Container } from '@material-ui/core'
 import Grid from '@material-ui/core/Grid'

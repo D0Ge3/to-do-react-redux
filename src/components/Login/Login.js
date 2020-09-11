@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
-import { login, getCaptcha } from '../../redux/authReducer'
+import { login, getCaptcha } from '../../redux/actions/authActions'
 
 import { Container } from '@material-ui/core'
 import LoginForm from './LoginForm'

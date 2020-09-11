@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 
-import { addTaskThunk } from '../../redux/tasksReducer'
+import { addTaskThunk } from '../../redux/actions/tasksActions'
 
 import Button from '@material-ui/core/Button'
 import List from '@material-ui/core/List'

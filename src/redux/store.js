@@ -1,10 +1,11 @@
 import { applyMiddleware, createStore, combineReducers, compose } from 'redux'
-import authReducer from './authReducer'
-import {reducer as formReducer} from 'redux-form'
 import thunkMiddleware from 'redux-thunk'
-import appReducer from './appReducer'
-import toDoListsReducer from './toDoListsReducer'
-import tasksReducer from './tasksReducer'
+import {reducer as formReducer} from 'redux-form'
+
+import authReducer from './reducers/authReducer'
+import appReducer from './reducers/appReducer'
+import toDoListsReducer from './reducers/toDoListsReducer'
+import tasksReducer from './reducers/tasksReducer'
 
 let reducers = combineReducers({
   app: appReducer,

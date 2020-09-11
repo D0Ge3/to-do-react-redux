@@ -1,76 +1,15 @@
-import { tasksAPI } from '../api'
-import { catchNetworkError } from './helpers/catchNetworkError'
+import { tasksAPI } from '../../api'
+import { catchNetworkError } from '../helpers/catchNetworkError'
 
-const SET_TASKS = 'tasks/SET_TASKS'
-const SET_TOTAL_COUNT = 'tasks/SET_TOTAL_COUNT'
-const SET_CURRENT_PAGE = 'tasks/SET_CURRENT_PAGE'
-const ADD_TASK = 'tasks/ADD_TASK'
-const SELECT_TASK = 'tasks/SELECT_TASK'
-const UNSELECT_TASK = 'tasks/UNSELECT_TASK'
-const DELETE_TASK = 'tasks/DELETE_TASK'
-const UPDATE_TASK = 'tasks/UPDATE_TASK'
-const TOGGLE_IS_FETCHING = 'tasks/TOGGLE_IS_FETCHING'
-
-const initialState = {
-  items: [],
-  selectedItem: {},
-  isFetching: false,
-  totalCount: null,
-  currentPage: 1,
-  pageSize: 10,
-}
-
-// В принципе, обычно разделяют логику с запросами к апи от логики обновления стора. Иначе получается немного нагруженно, как в этом файле.
-
-// Конечно спорный момент, но я бы убрал всю логику из запросов к апи в логику обновления стора, чтобы запросы к апи были макисмально простыми
-// Можно в таком случае разделить это на папки с экшенами, запросами к апи и редьюсерами
-
-/*
-    redux/
-        store.js
-        actions/
-        reducers/
-        requests/
-*/
-
-const tasksReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case SET_TASKS:
-      return { ...state, items: action.tasks }
-    case SET_CURRENT_PAGE:
-      return { ...state, currentPage: action.page }
-    case SET_TOTAL_COUNT:
-      return { ...state, totalCount: action.totalCount }
-    case ADD_TASK:
-      return { ...state, items: [action.task, ...state.items] }
-    case SELECT_TASK:
-      let selectedItem = action.taskId
-        ? state.items.find((item) => item.id === action.taskId)
-        : {}
-      return { ...state, selectedItem }
-    case DELETE_TASK:
-      return {
-        ...state,
-        items: state.items.filter((item) => item.id !== action.taskId),
-        selectedItem: state.selectedItem.id === action.taskId ? {} : state.selectedItem,
-      }
-    case UPDATE_TASK:
-      return {
-        ...state,
-        items: state.items.map((item) => (item.id === action.task.id ? action.task : item)),
-        selectedItem:
-          action.task.id === state.selectedItem.id
-            ? action.task
-            : state.selectedItem,
-      }
-    case TOGGLE_IS_FETCHING:
-      return { ...state, isFetching: !state.isFetching }
-    case UNSELECT_TASK:
-      return { ...state, selectedItem: {} }
-    default:
-      return state
-  }
-}
+export const SET_TASKS = 'tasks/SET_TASKS'
+export const SET_TOTAL_COUNT = 'tasks/SET_TOTAL_COUNT'
+export const SET_CURRENT_PAGE = 'tasks/SET_CURRENT_PAGE'
+export const ADD_TASK = 'tasks/ADD_TASK'
+export const SELECT_TASK = 'tasks/SELECT_TASK'
+export const UNSELECT_TASK = 'tasks/UNSELECT_TASK'
+export const DELETE_TASK = 'tasks/DELETE_TASK'
+export const UPDATE_TASK = 'tasks/UPDATE_TASK'
+export const TOGGLE_IS_FETCHING = 'tasks/TOGGLE_IS_FETCHING'
 
 export const setTasks = (tasks) => ({ type: SET_TASKS, tasks })
 export const setTotalCount = (totalCount) => ({ type: SET_TOTAL_COUNT, totalCount })
@@ -151,5 +90,3 @@ export const updateTaskThunk = (taskData) => async (dispatch) => {
     catchNetworkError(error, dispatch)
   }
 }
-
-export default tasksReducer

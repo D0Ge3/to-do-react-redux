@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { Switch, Redirect, Route } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 
-import { initializeApp } from './redux/appReducer'
+import { initializeApp } from './redux/actions/appActions'
 
 import Login from './components/Login/Login'
 import Lists from './components/Lists/Lists'

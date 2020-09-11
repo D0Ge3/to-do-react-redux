@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 import {
   deleteToDoList,
   updateToDoListTitle,
-} from '../../../redux/toDoListsReducer'
+} from '../../../redux/actions/toDoListsActions'
 
 import ListItemText from '@material-ui/core/ListItemText'
 import ListItem from '@material-ui/core/ListItem'
@@ -14,7 +14,8 @@ import { TextField } from '@material-ui/core'
 
 import s from './ListListItem.module.css'
 
-const ListListItem = ({ list, history }) => {
+const ListListItem = ({ list }) => {
+  let history = useHistory()
   const dispatch = useDispatch()
   let [editMode, setEditMode] = useState(false)
   let [newTitle, setNewTitle] = useState(list.title)
@@ -53,4 +54,4 @@ const ListListItem = ({ list, history }) => {
   )
 }
 
-export default withRouter(ListListItem)
+export default ListListItem
